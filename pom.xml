@@ -15,7 +15,7 @@
     </parent>
     <packaging>pom</packaging>
     <groupId>co.edu.uniquindio</groupId>
-    <artifactId>proyecto-asignatura</artifactId>
+    <artifactId>proyecto-unishop</artifactId>
     <name>Proyecto de programacion avanzada</name>
     <version>1.0-SNAPSHOT</version>
     <description>Este proyecto contiene los diferentes modulos del aplicativo del proyecto final de programacion avanzada </description>
