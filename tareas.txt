@@ -1,0 +1,18 @@
+-proyecto-persistencia (Todas las entidades, los atributos con sus debidas restricciones, así como las relaciones entre las entidades) en git.
+*Administrador falta comentar y verificar que no falte nada
+*Categoria falta comentar y verificar que no falte nada
+*Chat
+*Ciudad
+*Comentario
+*Compra
+*DetalleCompra
+*MedioPago
+*Mensaje
+*Persona
+*Producto Falta comentar y verificar que no falte nada
+*Subasta
+*SubasUsuario
+*Usiario
+-Archivos SQL para pruebas. Uno por cada entidad con al menos 3 registros c/u. O un solo archivo que contenga todo
+-Pruebas Unitarias (CRUD) por cada entidad.
+-Todo debidamente documentado.

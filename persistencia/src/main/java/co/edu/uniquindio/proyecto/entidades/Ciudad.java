@@ -11,14 +11,16 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Chat implements Serializable {
+public class Ciudad implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false,length = 10)
-    private  String codigo;
+    private String codigo;
+    @Column(nullable = false,length = 100)
+    private  String nombre;
 
-    public Chat() {
-        super();
+    public Ciudad() {
+      super();
     }
 }

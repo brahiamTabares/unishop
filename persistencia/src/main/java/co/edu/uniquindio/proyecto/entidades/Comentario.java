@@ -8,26 +8,28 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Mensaje implements Serializable {
 
+public class Comentario implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false,length = 10)
-    private String codigo;
-    @Column(nullable = false,length = 200)
-    private  String mensaje;
+    private  String codigo;
+    @Column(nullable = false,length = 210)
+    private String  mensaje;
+    @Column(nullable = false,length = 210)
+    private String respuesta;
+    @Column(nullable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime fechaComentario;
     @Column(nullable = false)
-    private   String emisor;
-    @Column(nullable = false,columnDefinition ="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime fecha;
+    private Integer calificacion;
 
-    public Mensaje() {
-       super();
+    public Comentario() {
+     super();
     }
 }

@@ -1,6 +1,9 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,14 +14,18 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Chat implements Serializable {
+public class DetalleCompra implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false,length = 10)
     private  String codigo;
+    @Column(nullable = false)
+    private Integer unidades;
+    @Column(nullable = false)
+    private Integer precioProducto;
 
-    public Chat() {
-        super();
+    public DetalleCompra() {
+       super();
     }
 }

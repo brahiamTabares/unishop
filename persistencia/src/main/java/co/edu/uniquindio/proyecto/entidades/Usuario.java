@@ -8,7 +8,11 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
+
 public class Usuario extends Persona implements Serializable {
+    public Usuario() {
+        super();
+    }
 
     //Pendiente llave Foranea
 }
