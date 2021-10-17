@@ -6,11 +6,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+
 
 
 @Entity
@@ -60,6 +60,7 @@ public class Producto implements Serializable {
 
     @OneToMany (mappedBy = "producto")
     private List<Subasta> subastas;
+
 
     public Producto() {
        super();
