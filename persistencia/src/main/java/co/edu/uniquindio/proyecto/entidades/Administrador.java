@@ -7,4 +7,11 @@ import javax.persistence.Entity;
 public class Administrador extends Persona { // No lleva el serializable porque le llega por herencia
 
 
+    public Administrador(String codigo, String nombre, String email, String password) {
+        super(codigo, nombre, email, password);
+    }
+
+    public Administrador() {
+
+    }
 }
