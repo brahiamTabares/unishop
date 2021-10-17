@@ -2,9 +2,7 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -22,10 +20,13 @@ public class Mensaje implements Serializable {
     private String codigo;
     @Column(nullable = false,length = 200)
     private  String mensaje;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private   String emisor;
     @Column(nullable = false,columnDefinition ="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fecha;
+    @ManyToOne
+    @JoinColumn(name="codigo_chat", nullable = false) // Designa la llave foránea
+    private Chat chat;
 
     public Mensaje() {
        super();

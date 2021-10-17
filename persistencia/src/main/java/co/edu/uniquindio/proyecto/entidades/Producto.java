@@ -24,7 +24,7 @@ public class Producto implements Serializable {
     @Column(nullable = false,length = 10)
     @EqualsAndHashCode.Include
      private String codigo;
-    @Column(nullable = false,length=100)
+    @Column(nullable = false,length=50)
      private String nombre;
     @Positive
     @Column(nullable = false)
@@ -34,10 +34,32 @@ public class Producto implements Serializable {
     @Positive
     @Column(nullable = false)
      private float   precio;
-    @Column(nullable = false)
-     private LocalDate fecha_Limite;
+    @Column(name="fecha_limite", nullable = false)
+     private LocalDate fechaLimite;
+    @Positive
+    private float descuento;
     @ManyToMany(mappedBy = "productos")
     private List<Categoria> categorias;
+    @ManyToOne
+    @JoinColumn (name="codigo_ciudad")
+    private Ciudad ciudad;
+    @OneToMany (mappedBy = "producto")
+    private List<DetalleCompra> detallesCompra;
+    @ManyToOne
+    @JoinColumn (name = "codigo_vendedor")
+    private Usuario vendedor;
+    @ElementCollection
+    @CollectionTable (name = "imagen",joinColumns = @JoinColumn(name = "codigo_producto"))// Para poder definir el nombre de la tabla que va a almacenar las rutas
+    @Column (name = "ruta")
+    private List<String> imagenes;
+    @ManyToMany
+    @JoinTable (name = "Favorito", joinColumns = @JoinColumn (name = "codigo_producto", nullable = false),
+            inverseJoinColumns = @JoinColumn (name ="codigo_usuario", nullable = false))
+            // Define la tabla intermedia Favorito con las llaves foráneas
+    private List<Usuario> usuarios;
+
+    @OneToMany (mappedBy = "producto")
+    private List<Subasta> subastas;
 
     public Producto() {
        super();

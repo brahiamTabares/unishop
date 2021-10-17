@@ -2,9 +2,7 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Future;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -24,9 +22,15 @@ public class SubastaUsuario implements Serializable {
     @Column(nullable = false)
     private Integer valor;
     @Future
-    @Column(nullable = false)
+    @Column(name = "fecha_subasta", nullable = false)
     private LocalDate fechaSubasta;
+    @ManyToOne
+    @JoinColumn (name = "codigo_subasta", nullable = false)
+    private Subasta subasta;
 
+    @ManyToOne
+    @JoinColumn (name = "codigo_usuario", nullable = false)
+    private Usuario usuario;
 
     public SubastaUsuario() {
 

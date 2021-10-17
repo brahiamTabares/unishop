@@ -5,9 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @Getter
@@ -22,8 +20,14 @@ public class DetalleCompra implements Serializable {
     private  String codigo;
     @Column(nullable = false)
     private Integer unidades;
-    @Column(nullable = false)
+    @Column(name="precio_producto",nullable = false)
     private Integer precioProducto;
+    @ManyToOne
+    @JoinColumn(name="codigo_compra",nullable = false)
+    private Compra compra;
+    @ManyToOne
+    @JoinColumn (name="codigo_producto",nullable = false)
+    private Producto producto;
 
     public DetalleCompra() {
        super();

@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -22,10 +24,16 @@ public class Compra implements Serializable {
     @EqualsAndHashCode.Include
     @Column(nullable = false,length = 10)
     private  String codigo;
-    @Column(nullable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name="fecha_compra", nullable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fechaCompra;
     @Enumerated(EnumType.STRING)
+    @Column (name="medio_pago", length = 20) // Se indica el nombre de la columna de la base de datoa
     private MedioPago  medioPago;
+    @OneToMany (mappedBy = "compra")
+    private List<DetalleCompra> detallesCompras;
+    @ManyToOne
+    @JoinColumn (name="codigo_usuario")
+    private Usuario usuario;
 
     public Compra() {
        super();

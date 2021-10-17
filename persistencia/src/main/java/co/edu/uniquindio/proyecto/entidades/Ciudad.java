@@ -2,10 +2,10 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -17,8 +17,12 @@ public class Ciudad implements Serializable {
     @EqualsAndHashCode.Include
     @Column(nullable = false,length = 10)
     private String codigo;
-    @Column(nullable = false,length = 100)
+    @Column(nullable = false,length = 50)
     private  String nombre;
+    @OneToMany (mappedBy = "ciudad") // La relación ya existe en Usuario a travès de la variable ciudad
+    private List<Usuario> usuarios;
+    @OneToMany (mappedBy = "ciudad")
+    private List<Producto> productos;
 
     public Ciudad() {
       super();

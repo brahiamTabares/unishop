@@ -1,23 +1,10 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-
 import javax.persistence.Entity;
-import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode
-public class Administrador extends Persona implements Serializable {
+// No se incluyen las anotaciones get, set, ni equals, ni constructor ya que lo hereda de Persona
+public class Administrador extends Persona { // No lleva el serializable porque le llega por herencia
 
-
-    public Administrador() {
-        super();
-    }
 
 }
