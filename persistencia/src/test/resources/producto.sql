@@ -1,0 +1,1 @@
+insert into Producto values ("100","Electrodomésticos");
