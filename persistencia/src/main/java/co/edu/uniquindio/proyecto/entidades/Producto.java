@@ -49,7 +49,7 @@ public class Producto implements Serializable {
     @JoinColumn (name = "codigo_vendedor")
     private Usuario vendedor;
     @ElementCollection
-    @CollectionTable (name = "imagen",joinColumns = @JoinColumn(name = "codigo_producto"))// Para poder definir el nombre de la tabla que va a almacenar las rutas
+    @CollectionTable (name = "Imagen",joinColumns = @JoinColumn(name = "codigo_producto"))// Para poder definir el nombre de la tabla que va a almacenar las rutas
     @Column (name = "ruta")
     private List<String> imagenes;
     @ManyToMany
@@ -58,7 +58,7 @@ public class Producto implements Serializable {
             // Define la tabla intermedia Favorito con las llaves foráneas
     private List<Usuario> usuarios;
 
-    @OneToMany (mappedBy = "producto")
+    @OneToMany (mappedBy = "producto"h)
     private List<Subasta> subastas;
 
 
