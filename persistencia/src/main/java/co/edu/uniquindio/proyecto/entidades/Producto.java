@@ -58,7 +58,7 @@ public class Producto implements Serializable {
             // Define la tabla intermedia Favorito con las llaves foráneas
     private List<Usuario> usuarios;
 
-    @OneToMany (mappedBy = "producto"h)
+    @OneToMany (mappedBy = "producto")
     private List<Subasta> subastas;
 
 

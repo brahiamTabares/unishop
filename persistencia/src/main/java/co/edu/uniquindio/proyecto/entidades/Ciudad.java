@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ciudad implements Serializable {
 
@@ -25,6 +24,10 @@ public class Ciudad implements Serializable {
     private List<Producto> productos;
 
     public Ciudad() {
-      super();
+    }
+
+    public Ciudad(String codigo, String nombre) {
+        this.codigo = codigo;
+        this.nombre = nombre;
     }
 }

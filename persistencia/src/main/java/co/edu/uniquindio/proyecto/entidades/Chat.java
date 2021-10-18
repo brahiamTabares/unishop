@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Chat implements Serializable {
 
@@ -23,8 +22,10 @@ public class Chat implements Serializable {
     @OneToMany (mappedBy = "chat") // Permite establecer que esa variable ya existe en la clase Mensaje con la variable chat
     private List<Mensaje> mensajes;
 
-    public Chat() {
-        super();
-    }
+    public Chat() {}
 
+    public Chat(String codigo, Usuario usuario) {
+        this.codigo = codigo;
+        this.usuario = usuario;
+    }
 }

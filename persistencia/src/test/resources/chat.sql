@@ -1,3 +1,3 @@
-insert into Chat values ("1","002");
-insert into Chat values ("1","003");
-insert into Chat values ("1","006");
+insert into Chat values ("1","00002");
+insert into Chat values ("2","00003");
+insert into Chat values ("3","00006");

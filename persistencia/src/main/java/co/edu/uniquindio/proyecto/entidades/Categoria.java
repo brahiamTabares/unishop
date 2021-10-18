@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Categoria implements Serializable {
     @Id
@@ -25,9 +24,13 @@ public class Categoria implements Serializable {
         // El inverseJoingColumns define la llave foránea que está ligada con producto
     private List<Producto> productos;
 
+    public Categoria(String codigo, String nombre) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
+
     public Categoria() {
-        super();
-    } // No es necesario tener el constructo ya que por
-    // defecto toda clase tiene un constructor sin parámtros mientras no se defina ningún otro.
+
+    }
 }
 
