@@ -39,4 +39,8 @@ public class Usuario extends Persona { // No requiere serializable por venir de 
         super();
     }
 
+    public Usuario(String codigo, String nombre, String email, String password, Ciudad ciudad) {
+        super(codigo, nombre, email, password);
+        this.ciudad = ciudad;
+    }
 }

@@ -24,7 +24,7 @@ public class ChatTest {
     @Autowired
     private UsuarioRepo usuarioRepo;
 
-    // programa  de prueba de registrar  la categoria
+    //  permite probar que se registre el chat
     @Test
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql"})
     public void registrarTest() {
@@ -34,20 +34,20 @@ public class ChatTest {
         Assertions.assertNotNull(chatRegistrada);
     }
 
-    // programa de prueba para eliminar una categoria
+    // prueba para eliminar un chat
     @Test
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql"})
     public void eliminarTest() {
-        //borra la categoria buscando por codigo
+        //borra el chat  buscando por codigo
         chatRepo.deleteById("3");
-        //Se busca la categoria para verificar si lo borro
+        //Se busca el chat para validar que si lo borro
 
         Chat chatregistrado = chatRepo.findById("3").orElse(null);
         // para decir que lo que espero es un null
         Assertions.assertNull(chatregistrado);
     }
 
-    @Test // programa de prueba  para actualizar un administrador
+    @Test // permite actualizar el chat
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql"})
     public void actualizarTest() {
 
@@ -67,7 +67,7 @@ public class ChatTest {
     }
 
 
-    @Test // programa de tipo test para listar las ciudades creadas
+    @Test // programa de tipo test  que permite listar los chats
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql"})
     public void ListarTest() {
         List<Chat> chats = chatRepo.findAll();

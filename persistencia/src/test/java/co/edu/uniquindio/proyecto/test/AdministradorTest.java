@@ -58,7 +58,7 @@ public class AdministradorTest {
     }
 
 
-    @Test // programa de tipo test para listar las ciudades creadas
+    @Test // programa de tipo test para listar los administradores
     @Sql({"classpath:persona.sql","classpath:administrador.sql"})
     public void ListarTest() {
         List<Administrador> administradores = administradorRepo.findAll();

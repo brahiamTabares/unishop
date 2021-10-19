@@ -19,29 +19,30 @@ public class CiudadTest {
     @Autowired
     private CiudadRepo ciudadRepo;
 
-    // programa  de prueba de registrar al administrador
+    // programa  de prueba de registrar  una ciudad
     @Test
     @Sql({"classpath:ciudad.sql"})
     public void registrarTest() {
+
         Ciudad ciudad = new Ciudad("6","Barranquilla");
         Ciudad ciudadResgistrada = ciudadRepo.save(ciudad);
         Assertions.assertNotNull(ciudadResgistrada);
     }
 
-    // programa de prueba para eliminar un administrador
+    // programa de prueba para eliminar una ciudad
     @Test
     @Sql({"classpath:ciudad.sql"})
     public void eliminarTest() {
-        //borra el administrador buscando por codigo
+        //borra  la ciudad buscanda por codigo
         ciudadRepo.deleteById("2");
-        //Se el administrador para verificar si lo borro
+        //Se  busca la ciudad para verificar que  si la borro
 
         Ciudad ciudadRegistrada = ciudadRepo.findById("2").orElse(null);
         // para decir que lo que espero es un null
         Assertions.assertNull(ciudadRegistrada);
     }
 
-    @Test // programa de prueba  para actualizar un administrador
+    @Test // programa de prueba  para actualizar una ciudad
     @Sql({"classpath:ciudad.sql"})
     public void actualizarTest() {
         Ciudad ciudadRegistrada = ciudadRepo.findById("4").orElse(null);
@@ -49,7 +50,7 @@ public class CiudadTest {
         //Se guarda la modificación
         ciudadRepo.save(ciudadRegistrada);
 
-        //busca el administrador
+        //busca la ciudad
         Ciudad ciudadBuscado = ciudadRepo.findById("4").orElse(null);
 
         // Se busca el cambio
