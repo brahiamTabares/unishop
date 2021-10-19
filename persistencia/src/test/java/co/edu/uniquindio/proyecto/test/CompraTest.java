@@ -29,10 +29,10 @@ public class CompraTest {
 
 
     @Test
-    @Sql({"classpath:compra.sql","classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql",})
+    @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:compra.sql"})
     public void registrarTest() {
         Usuario usuario = usuarioRepo.findById("00006").orElse(null);
-        Compra  compra= new Compra("005",LocalDateTime.now(), MedioPago.TARJETA_CREDITO,usuario);
+        Compra  compra= new Compra("005",LocalDateTime.now(), MedioPago.NEQUI,usuario);
         Compra compraResgistrada = compraRepo.save(compra);
         Assertions.assertNotNull(compraResgistrada);
     }
