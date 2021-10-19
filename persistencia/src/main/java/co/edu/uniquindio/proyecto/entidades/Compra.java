@@ -38,4 +38,11 @@ public class Compra implements Serializable {
     public Compra() {
        super();
     }
+
+    public Compra(String codigo, LocalDateTime fechaCompra, MedioPago medioPago, Usuario usuario) {
+        this.codigo = codigo;
+        this.fechaCompra = fechaCompra;
+        this.medioPago = medioPago;
+        this.usuario = usuario;
+    }
 }

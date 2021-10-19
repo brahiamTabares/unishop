@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @DataJpaTest
@@ -27,7 +28,9 @@ public class UsuarioTest {
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql"})
     public void registrarTest() {
         Ciudad ciudad = ciudadRepo.findById("1").orElse(null);
-        Usuario  usuario = new Usuario("123","Brahiam","bdtabaresv@uqvirtual.edu","1245",ciudad);
+        List<String> telefonos= new ArrayList<>();
+        telefonos.add("2222222");
+        Usuario  usuario = new Usuario("123","Brahiam","bdtabaresv@uqvirtual.edu","1245",ciudad,telefonos);
         Usuario usuarioResgistrado = usuarioRepo.save(usuario);
         Assertions.assertNotNull(usuarioResgistrado);
     }
