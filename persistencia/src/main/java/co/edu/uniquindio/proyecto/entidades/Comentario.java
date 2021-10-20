@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
 public class Comentario implements Serializable {
@@ -36,5 +35,15 @@ public class Comentario implements Serializable {
 
     public Comentario() {
      super();
+    }
+
+    public Comentario(String codigo, String mensaje, String respuesta, LocalDateTime fechaComentario, Integer calificacion, Usuario usuario, Producto producto) {
+        this.codigo = codigo;
+        this.mensaje = mensaje;
+        this.respuesta = respuesta;
+        this.fechaComentario = fechaComentario;
+        this.calificacion = calificacion;
+        this.usuario = usuario;
+        this.producto = producto;
     }
 }

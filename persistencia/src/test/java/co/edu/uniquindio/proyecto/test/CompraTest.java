@@ -23,7 +23,8 @@ public class CompraTest {
 
     @Autowired
     private CompraRepo compraRepo;
-    @Autowired UsuarioRepo usuarioRepo;
+    @Autowired
+    UsuarioRepo usuarioRepo;
 
 
 

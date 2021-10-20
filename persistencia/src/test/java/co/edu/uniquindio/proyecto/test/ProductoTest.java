@@ -28,7 +28,7 @@ public class ProductoTest {
     @Autowired
     private CiudadRepo ciudadRepo;
 
-    // permite registrar un producto un
+    // permite registrar un producto
     @Test
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql"})
     public void registrarTest() {
@@ -44,7 +44,7 @@ public class ProductoTest {
         Assertions.assertNotNull(productoRegistrado);
     }
 
-    @Test
+    @Test// permite probar que se elimina un producto
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql"})
     public void eliminarTest() {
 
