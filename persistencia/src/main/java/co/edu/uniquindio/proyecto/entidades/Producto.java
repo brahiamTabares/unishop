@@ -17,7 +17,6 @@ import java.util.List;
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Producto implements Serializable {
     @Id
@@ -66,4 +65,18 @@ public class Producto implements Serializable {
        super();
     }
 
+
+
+    public Producto(String codigo, String nombre, Integer unidades, String descripcion, float precio, LocalDate fechaLimite, float descuento, Ciudad ciudad, Usuario vendedor,List<String> imagenes) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.unidades = unidades;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.fechaLimite = fechaLimite;
+        this.descuento = descuento;
+        this.ciudad = ciudad;
+        this.vendedor = vendedor;
+        this.imagenes = imagenes;
+    }
 }
