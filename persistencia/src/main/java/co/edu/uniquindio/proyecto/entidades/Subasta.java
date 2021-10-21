@@ -12,7 +12,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Subasta implements Serializable {
     @Id
@@ -33,4 +32,11 @@ public class Subasta implements Serializable {
     public Subasta() {
      super();
     }
+
+    public Subasta(String codigo, LocalDate fecha, Producto producto) {
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.producto = producto;
+    }
+
 }
