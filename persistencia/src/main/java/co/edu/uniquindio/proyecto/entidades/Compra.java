@@ -12,12 +12,21 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+/*
+Las etiquetas siguientes son para que con el @Entity lo reconozca como entidad en la base de dato
+Las etiquetas @Getter y œSetter son para tener el còdigo màs limpio, se encarga de generar los getters y setter de la clase
+ */
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
+
+/*
+Se agrega a cada atributo las respectivas restricciones y sus relaciones con otras entidades
+ */
 public class Compra implements Serializable {
 
     @Id

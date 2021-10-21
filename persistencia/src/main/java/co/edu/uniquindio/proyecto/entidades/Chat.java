@@ -6,10 +6,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/*
+Las etiquetas siguientes son para que con el @Entity lo reconozca como entidad en la base de dato
+Las etiquetas @Getter y œSetter son para tener el còdigo màs limpio, se encarga de generar los getters y setter de la clase
+ */
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
+/*
+Se agrega a cada atributo las respectivas restricciones y sus relaciones con otras entidades
+ */
 public class Chat implements Serializable {
 
     @Id

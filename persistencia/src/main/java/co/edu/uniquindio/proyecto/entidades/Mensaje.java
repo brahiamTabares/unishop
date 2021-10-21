@@ -6,12 +6,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/*
+Las etiquetas siguientes son para que con el @Entity lo reconozca como entidad en la base de dato
+Las etiquetas @Getter, @Setter  y Contructor son para tener el còdigo màs limpio, se encarga de generar los getters y setter de la clase
+ */
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
+/*
+Se agrega a cada atributo las respectivas restricciones y sus relaciones con otras entidades
+ */
 public class Mensaje implements Serializable {
 
     @Id

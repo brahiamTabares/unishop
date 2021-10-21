@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,13 +10,19 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-
-
+/*
+Las etiquetas siguientes son para que con el @Entity lo reconozca como entidad en la base de dato
+Las etiquetas @Getter y œSetter son para tener el còdigo màs limpio, se encarga de generar los getters y setter de la clase
+ */
 @Entity
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
+/*
+Se agrega a cada atributo las respectivas restricciones y sus relaciones con otras entidades
+ */
 public class Producto implements Serializable {
     @Id
     @Column(nullable = false,length = 10)
