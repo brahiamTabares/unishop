@@ -27,8 +27,6 @@ public class CompraTest {
     UsuarioRepo usuarioRepo;
 
 
-
-
     @Test
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:compra.sql"})
     public void registrarTest() {
@@ -37,35 +35,26 @@ public class CompraTest {
         Compra compraResgistrada = compraRepo.save(compra);
         Assertions.assertNotNull(compraResgistrada);
     }
-    // permite  eliminar compra
-    @Test
+
+    @Test // Prueba eliminar compra por código
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:compra.sql"})
     public void eliminarTest() {
-        //elimina  la compra  buscada por el codigo
         compraRepo.deleteById("004");
-        //verifica que la compra halla sido eliminada
-
-        Compra compraRegistrada = compraRepo.findById("004").orElse(null);
-        // se espera que la respuesta sea null
+        Compra compraRegistrada = compraRepo.findById("004").orElse(null); // Se valida la eliminación
         Assertions.assertNull(compraRegistrada);
     }
 
-    @Test // este programa permite probar que la compra  se actualize
+    @Test // Prueba de Actualización de compra
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:compra.sql"})
     public void actualizarTest() {
         Compra compraRegistrada = compraRepo.findById("005").orElse(null);
         compraRegistrada.setMedioPago(MedioPago.NEQUI);
-        //Se guardan los cambios
         compraRepo.save(compraRegistrada);
-
-        //busca la compra
         Compra compraBuscada = compraRepo.findById("005").orElse(null);
-
-        // se validan los cambios
         Assertions.assertEquals(MedioPago.NEQUI, compraBuscada.getMedioPago());
 
     }
-    @Test // permite listar las compras
+    @Test // Se lista las compras
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:compra.sql"})
     public void ListarTest() {
         List<Compra> compras = compraRepo.findAll();

@@ -20,39 +20,30 @@ public class PersonaTest {
      @Autowired
     private PersonaRepo personaRepo;
 
-    //  Permite que se registre  una persona
-    @Test
+
+    @Test //  Prueba para registrar una persona
     @Sql("classpath:persona.sql")
     public void registrarTest() {
         Persona persona = new Persona("00008","Alvaro","bdtabaresv@uqvirtual.edu","15475");
         Persona personaResgistrada = personaRepo.save(persona);
         Assertions.assertNotNull(personaResgistrada);
     }
-    // permite   probar que se elimino una persona
-    @Test
+
+    @Test// Prueba para eliminar una persona por el código
     @Sql("classpath:persona.sql")
     public void eliminarTest() {
-        //elimina  la persona buscada por el codigo
         personaRepo.deleteById("00004");
-        //verifica que  la persona  halla sido eliminada
-
         Persona personaRegistrada = personaRepo.findById("00004").orElse(null);
-        // se espera que la respuesta sea null
         Assertions.assertNull(personaRegistrada);
     }
 
-    @Test // este programa permite probar que la persona  se actualize
+    @Test // Prueba actualización de una persona
     @Sql("classpath:persona.sql")
     public void actualizarTest() {
         Persona personaRegistrada = personaRepo.findById("00003").orElse(null);
         personaRegistrada.setNombre("Javier");
-        //Se guardan los cambios
         personaRepo.save(personaRegistrada);
-
-        //busca la persona
         Persona  personaBuscada = personaRepo.findById("00003").orElse(null);
-
-        // se validan los cambios
         Assertions.assertEquals("Javier", personaBuscada.getNombre());
 
     }

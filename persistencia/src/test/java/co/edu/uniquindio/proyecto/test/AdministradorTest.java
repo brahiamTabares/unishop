@@ -19,7 +19,7 @@ public class AdministradorTest {
     @Autowired
     private AdministradorRepo administradorRepo;
 
-    // programa  de prueba de registrar al administrador
+    // Prueba para registrar al administrador
     @Test
     @Sql({"classpath:persona.sql","classpath:administrador.sql"})
     public void registrarTest() {
@@ -28,37 +28,33 @@ public class AdministradorTest {
         Assertions.assertNotNull(administradorResgistrado);
     }
 
-    // programa de prueba para eliminar un administrador
+    // Prueba para eliminar un administrador
     @Test
     @Sql({"classpath:persona.sql","classpath:administrador.sql"})
     public void eliminarTest() {
-        //borra el administrador buscando por codigo
+        // Eliminar el administrador por código
         administradorRepo.deleteById("00001");
-        //Se el administrador para verificar si lo borro
 
         Administrador administradorRegistrado = administradorRepo.findById("00001").orElse(null);
-        // para decir que lo que espero es un null
+
         Assertions.assertNull(administradorRegistrado);
     }
 
-    @Test // programa de prueba  para actualizar un administrador
+    @Test // Prueba  para actualizar un administrador
     @Sql({"classpath:persona.sql","classpath:administrador.sql"})
     public void actualizarTest() {
         Administrador administradorRegistrado = administradorRepo.findById("00004").orElse(null);
         administradorRegistrado.setNombre("Daniel");
-        //Se guarda la modificación
-        administradorRepo.save(administradorRegistrado);
 
-        //busca el administrador
+        administradorRepo.save(administradorRegistrado);//Guarda la modificación
+
         Administrador administradorBuscado = administradorRepo.findById("00004").orElse(null);
 
-        // Se busca el cambio
         Assertions.assertEquals("Daniel", administradorBuscado.getNombre());
 
     }
 
-
-    @Test // programa de tipo test para listar los administradores
+    @Test // listar administradores
     @Sql({"classpath:persona.sql","classpath:administrador.sql"})
     public void ListarTest() {
         List<Administrador> administradores = administradorRepo.findAll();

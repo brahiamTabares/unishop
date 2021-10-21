@@ -18,8 +18,8 @@ public class CategoriaTest {
         @Autowired
         private CategoriaRepo categoriaRepo;
 
-        // programa  de prueba de registrar  la categoria
-        @Test
+
+        @Test // Prueba para registrar una categoria
         @Sql("classpath:categoria.sql")
         public void registrarTest() {
             Categoria categoria = new Categoria("123", "Miguel");
@@ -27,42 +27,33 @@ public class CategoriaTest {
             Assertions.assertNotNull(categoriaRegistrada);
         }
 
-        // programa de prueba para eliminar una categoria listo
-        @Test
+
+        @Test // Prueba para eliminar una categoria por código
         @Sql("classpath:categoria.sql")
         public void eliminarTest() {
-            //borra la categoria buscanda por  el codigo
-            categoriaRepo.deleteById("100");
-            //Se busca la categoria para verificar si se borro
 
+            categoriaRepo.deleteById("100");
+            //Se valida que la categoría ya no exista
             Categoria categoriaRegistrada = categoriaRepo.findById("100").orElse(null);
-            // para decir que lo que espero es un null
             Assertions.assertNull(categoriaRegistrada);
         }
 
-        @Test // programa de prueba  para actualizar  la categoria
+        @Test // Prueba para actualizar una categoría
         @Sql("classpath:categoria.sql")
         public void actualizarTest() {
             Categoria categoriaRegistrada = categoriaRepo.findById("101").orElse(null);
             categoriaRegistrada.setNombre("Jaime");
-            //Se guarda la modificación
             categoriaRepo.save(categoriaRegistrada);
-
-            //busca la categria
             Categoria categoriaBuscada =  categoriaRepo.findById("101").orElse(null);
-
-            // Se busca el cambio
-            Assertions.assertEquals("Jaime", categoriaBuscada.getNombre());
-
+            Assertions.assertEquals("Jaime", categoriaBuscada.getNombre()); // Se verifica la modificación
         }
 
 
-        @Test //  nos permite evidenciar que se listen las categorias
+        @Test // Se lista las categorias
         @Sql({"classpath:persona.sql","classpath:administrador.sql"})
         public void ListarTest() {
             List<Categoria> categorias = categoriaRepo.findAll();
             categorias.forEach(Categoria -> System.out.println(Categoria));
-
 
         }
     }

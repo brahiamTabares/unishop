@@ -26,8 +26,8 @@ public class SubastaTest {
     @Autowired
     private  ProductoRepo productoRepo;
 
-    //  Permite que se registre una subasta
-    @Test
+
+    @Test //  Prueba para registrar una subasta
     @Sql({"classpath:ciudad.sql","classpath:persona.sql", "classpath:usuario.sql", "classpath:producto.sql","classpath:subasta.sql"})
     public void registrarTest() {
         Producto producto=productoRepo.findById("1238").orElse(null);
@@ -35,35 +35,26 @@ public class SubastaTest {
         Subasta subastaResgistrada = subastaRepo.save(subasta);
         Assertions.assertNotNull(subastaResgistrada);
     }
-    // permite  eliminar una subasta
-    @Test
+
+    @Test // Prueba para eliminar una subasta por código
     @Sql({"classpath:ciudad.sql","classpath:persona.sql", "classpath:usuario.sql","classpath:producto.sql","classpath:subasta.sql"})
     public void eliminarTest() {
-        //elimina la subasta   buscada por el codigo
         subastaRepo.deleteById("20");
-        //verifica que la subasta  halla sido eliminado
-
         Subasta  subastaRegistrada= subastaRepo.findById("20").orElse(null);
-        // se espera que la respuesta sea null
         Assertions.assertNull(subastaRegistrada);
     }
 
-    @Test // este programa permite probar  la subasta  se actualiza
+    @Test // Prueba de actualización de subasta
     @Sql({"classpath:ciudad.sql","classpath:persona.sql", "classpath:usuario.sql","classpath:producto.sql","classpath:subasta.sql"})
     public void actualizarTest() {
         Subasta subastaRegistrada = subastaRepo.findById("10").orElse(null);
         subastaRegistrada.setCodigo("60");
-        //Se guardan los cambios
         subastaRepo.save(subastaRegistrada);
-
-        //busca  la subasta
         Subasta  subastaBuscada = subastaRepo.findById("10").orElse(null);
-
-        // se validan los cambios
         Assertions.assertEquals("60", subastaBuscada.getCodigo());
 
     }
-    @Test // permite listar  las subastas
+    @Test // listar  las subastas
     @Sql({"classpath:ciudad.sql","classpath:persona.sql", "classpath:usuario.sql","classpath:producto.sql","classpath:subasta.sql"})
     public void ListarTest() {
         List<Subasta> subastas = subastaRepo.findAll();

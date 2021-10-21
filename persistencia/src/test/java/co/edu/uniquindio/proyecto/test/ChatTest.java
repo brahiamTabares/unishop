@@ -24,8 +24,8 @@ public class ChatTest {
     @Autowired
     private UsuarioRepo usuarioRepo;
 
-    //  permite probar que se registre el chat
-    @Test
+
+    @Test //  Prueba de un registro en el chat
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql"})
     public void registrarTest() {
         Usuario usuario= usuarioRepo.findById("000020").orElse(null);
@@ -34,46 +34,32 @@ public class ChatTest {
         Assertions.assertNotNull(chatRegistrada);
     }
 
-    // prueba para eliminar un chat
-    @Test
+    @Test // prueba para eliminar un chat por código
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql"})
     public void eliminarTest() {
-        //borra el chat  buscando por codigo
         chatRepo.deleteById("3");
-        //Se busca el chat para validar que si lo borro
-
+        //Se valida que no exista el chat
         Chat chatregistrado = chatRepo.findById("3").orElse(null);
-        // para decir que lo que espero es un null
         Assertions.assertNull(chatregistrado);
     }
 
-    @Test // permite actualizar el chat
+    @Test // Prueba para actualizar el chat
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql"})
     public void actualizarTest() {
 
         Usuario usuario= usuarioRepo.findById("00002").orElse(null);
         Chat chatRegistrada = chatRepo.findById("1").orElse(null);
-
         chatRegistrada.setUsuario(usuario);
-        //Se guarda la modificación
         chatRepo.save(chatRegistrada);
-
-        //busca la categria
         Chat chatBuscado =  chatRepo.findById("1").orElse(null);
-
-        // Se busca el cambio
         Assertions.assertEquals(usuario, chatBuscado.getUsuario());
-
     }
 
-
-    @Test // programa de tipo test  que permite listar los chats
+    @Test // Se listan los chats
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql"})
     public void ListarTest() {
         List<Chat> chats = chatRepo.findAll();
         chats.forEach(Chat -> System.out.println(Chat));
-
-
     }
 
 }

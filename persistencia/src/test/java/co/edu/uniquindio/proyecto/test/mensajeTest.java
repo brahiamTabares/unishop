@@ -21,8 +21,8 @@ public class mensajeTest {
     private MensajeRepo mensajeRepo;
      @Autowired
     private ChatRepo chatRepo;
-     // permite probar que se esta registrando el mensaje
-    @Test
+
+    @Test //Prueba para registrar un mensaje
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql","classpath:mensaje.sql"})
     public void registrarTest() {
         Chat chat = chatRepo.findById("3").orElse(null);
@@ -30,34 +30,26 @@ public class mensajeTest {
         Mensaje mensajeResgistrado = mensajeRepo.save(mensaje);
         Assertions.assertNotNull(mensajeResgistrado);
     }
-    @Test// permite probar que se elimina el mensaje
+    @Test// Prueba para eliminar un mensaje por código
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql","classpath:mensaje.sql"})
     public void eliminarTest() {
 
-        //elimina el  mensaje  buscado pro el  por el codigo
         mensajeRepo.deleteById("3");
-        //verifica que el mensaje  halla sido eliminado
-
          Mensaje mensajeRegistrado= mensajeRepo.findById("3").orElse(null);
-        // se espera que el mensaje  sea null
+
         Assertions.assertNull(mensajeRegistrado);
     }
-    @Test// permite probar que se actualiza el mensaje
+    @Test// Prueba actualización de un mensaje
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql","classpath:mensaje.sql"})
     public void actualizarTest() {
         Mensaje mensajeRegistrado = mensajeRepo.findById("2").orElse(null);
         mensajeRegistrado.setEmisor("Diego");
-        //Se guardan los cambios
         mensajeRepo.save(mensajeRegistrado);
-
-        //busca el  mensaje actualizado
         Mensaje mensajeBuscado = mensajeRepo.findById("2").orElse(null);
-
-        // se validan los cambios
         Assertions.assertEquals("Diego", mensajeBuscado.getEmisor());
 
     }
-    @Test// permite listar  los mensajes
+    @Test // SE listan  los mensajes
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:chat.sql","classpath:mensaje.sql"})
     public void ListarTest() {
         List<Mensaje> mensajes =mensajeRepo.findAll();

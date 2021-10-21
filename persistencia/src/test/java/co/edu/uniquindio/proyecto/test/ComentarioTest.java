@@ -30,8 +30,8 @@ public class ComentarioTest {
     @Autowired
     private ProductoRepo productoRepo;
 
-     // Permite probar que se registra un comentario
-    @Test
+
+    @Test // Prueba para registrar un comentario
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql","classpath:comentario.sql"})
     public void registrarTest() {
 
@@ -39,41 +39,31 @@ public class ComentarioTest {
         Usuario usuario = usuarioRepo.findById("00005").orElse(null);
         Comentario comentario = new Comentario("6", "Quisiera pedir la garantia de mi producto ", "porfavor envie una solicitud", LocalDateTime.now()
                 , 10, usuario, producto);
-
         Comentario comentarioRegistrado = comentarioRepo.save(comentario);
         Assertions.assertNotNull(comentarioRegistrado);
 
     }
-        // Permite probar que se elimina  un comentario
-        @Test
+
+        @Test // Prueba para eliminar un comentario por código
         @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql","classpath:comentario.sql"})
         public void eliminarRegistro(){
-            //elimina el comentario buscado por el codigo
             comentarioRepo.deleteById("4");
-            //verifica que el comentario halla sido eliminado
-
             Comentario comentarioRegistrado = comentarioRepo.findById("4").orElse(null);
-            // se espera que la respuesta sea null
             Assertions.assertNull(comentarioRegistrado);
         }
-        // permite  probar que se actualiza un comentario
-    @Test
+
+    @Test // Prueba de actualización de un comentario
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql","classpath:comentario.sql"})
     public void actualizarTest() {
         Comentario comentarioRegistrado = comentarioRepo.findById("2").orElse(null);
         comentarioRegistrado.setCalificacion(10);
-        //Se guardan los cambios
         comentarioRepo.save(comentarioRegistrado);
-
-        //busca al  comentario
         Comentario coementarioBuscado =comentarioRepo.findById("2").orElse(null);
-
-        // se validan los cambios
         Assertions.assertEquals(10, coementarioBuscado.getCalificacion());
 
     }
-    // permite hacer la prueba de que  se listan los comentarios
-    @Test
+
+    @Test // Se listan los comentarios
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql","classpath:comentario.sql"})
     public void ListarTest() {
         List<Comentario> comentarios = comentarioRepo.findAll();

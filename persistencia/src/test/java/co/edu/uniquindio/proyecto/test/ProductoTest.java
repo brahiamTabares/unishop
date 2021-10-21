@@ -28,8 +28,8 @@ public class ProductoTest {
     @Autowired
     private CiudadRepo ciudadRepo;
 
-    // permite registrar un producto
-    @Test
+
+    @Test // Prueba para registrar un producto
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql"})
     public void registrarTest() {
 
@@ -44,36 +44,26 @@ public class ProductoTest {
         Assertions.assertNotNull(productoRegistrado);
     }
 
-    @Test// permite probar que se elimina un producto
+    @Test // Prueba para eliminar un producto por código
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql"})
     public void eliminarTest() {
 
-        //elimina el producto buscado por el codigo
         productoRepo.deleteById("1236");
-        //verifica que el producto halla sido eliminado
-
         Producto productoRegistrado = productoRepo.findById("1236").orElse(null);
-        // se espera que la respuesta sea null
         Assertions.assertNull(productoRegistrado);
     }
-    // verifica que el producto se actulize
-    @Test
+
+    @Test // Prueba de actualización de un producto
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql"})
     public void actualizarTest() {
         Producto productoRegistrado = productoRepo.findById("1238").orElse(null);
         productoRegistrado.setNombre("televisorHD");
-        //Se guardan los cambios
         productoRepo.save(productoRegistrado);
-
-        //busca al producto
         Producto productoBuscado = productoRepo.findById("1238").orElse(null);
-
-        // se validan los cambios
         Assertions.assertEquals("televisorHD", productoBuscado.getNombre());
-
       }
-      // permite hacer la prueba de que  se listan los productos
-    @Test
+
+    @Test // Prueba para listar los productos
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:producto.sql"})
     public void ListarTest() {
         List<Producto> productos = productoRepo.findAll();

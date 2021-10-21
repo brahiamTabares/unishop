@@ -20,8 +20,7 @@ public class CiudadTest {
     @Autowired
     private CiudadRepo ciudadRepo;
 
-    // programa  de prueba de registrar  una ciudad
-    @Test
+    @Test // Prueba para registrar una ciudad
     @Sql({"classpath:ciudad.sql"})
     public void registrarTest() {
 
@@ -30,37 +29,26 @@ public class CiudadTest {
         Assertions.assertNotNull(ciudadResgistrada);
     }
 
-    // programa de prueba para eliminar una ciudad
-    @Test
+    @Test // Prueba para eliminar una ciudad por código
     @Sql({"classpath:ciudad.sql"})
     public void eliminarTest() {
-        //borra  la ciudad buscanda por codigo
         ciudadRepo.deleteById("2");
-        //Se  busca la ciudad para verificar que  si la borro
-
-        Ciudad ciudadRegistrada = ciudadRepo.findById("2").orElse(null);
-        // para decir que lo que espero es un null
-        Assertions.assertNull(ciudadRegistrada);
+        Ciudad ciudadRegistrada = ciudadRepo.findById("2").orElse(null); // Se valida que no exista la ciudad
+        Assertions.assertNull(ciudadRegistrada); // Se espera de resultado el null
     }
 
-    @Test // programa de prueba  para actualizar una ciudad
+    @Test // Prueba para actualizar una ciudad
     @Sql({"classpath:ciudad.sql"})
     public void actualizarTest() {
         Ciudad ciudadRegistrada = ciudadRepo.findById("4").orElse(null);
         ciudadRegistrada.setNombre("Pasto");
-        //Se guarda la modificación
         ciudadRepo.save(ciudadRegistrada);
-
-        //busca la ciudad
         Ciudad ciudadBuscado = ciudadRepo.findById("4").orElse(null);
-
-        // Se busca el cambio
         Assertions.assertEquals("Pasto", ciudadBuscado.getNombre());
 
     }
 
-
-    @Test // programa de tipo test para listar las ciudades creadas
+    @Test // listar las ciudades
     @Sql({"classpath:ciudad.sql"})
     public void ListarTest() {
         List<Ciudad> ciudades = ciudadRepo.findAll();

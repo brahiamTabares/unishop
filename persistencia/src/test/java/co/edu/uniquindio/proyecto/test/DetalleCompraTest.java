@@ -24,8 +24,8 @@ public class DetalleCompraTest {
     private CompraRepo compraRepo;
     @Autowired
     private ProductoRepo productoRepo;
-    //Permite probar que se registre el detalle de la compra
-    @Test
+
+    @Test //Prueba para registrar el detalle de la compra
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:compra.sql"})
     public void registrarTest() {
         Compra compra = compraRepo.findById("004").orElse(null);
@@ -34,37 +34,26 @@ public class DetalleCompraTest {
         DetalleCompra detalleCompraResgistrada = detalleCompraRepo.save(detalleCompra);
         Assertions.assertNotNull(detalleCompraResgistrada);
     }
-    @Test// permite probar que se elimina el detalle de una compra
+    @Test// Prueba para eliminar el detalle de una compra
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:telefono.sql","classpath:producto.sql","classpath:compra.sql","classpath:detalleCompra.sql"})
     public void eliminarTest() {
-
-        //elimina el detalle de la compra buscada por el codigo
-         detalleCompraRepo.deleteById("5");
-        //verifica que el detalle de la compra  halla sido eliminado
-
+        detalleCompraRepo.deleteById("5");
         DetalleCompra  detalleCompraRegistrada = detalleCompraRepo.findById("5").orElse(null);
-        // se espera que la respuesta sea null
         Assertions.assertNull(detalleCompraRegistrada);
     }
-    // verifica que el detalle de la compra  se actulize
-    @Test
+
+    @Test // Prueba de actualización de detalle de la compra
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:telefono.sql","classpath:producto.sql","classpath:compra.sql","classpath:detalleCompra.sql"})
     public void actualizarTest() {
         DetalleCompra detalleCompraRegistrada = detalleCompraRepo.findById("4").orElse(null);
         detalleCompraRegistrada.setUnidades(3);
-        //Se guardan los cambios
         detalleCompraRepo.save(detalleCompraRegistrada);
-
-        //busca el detalle de la compra
         DetalleCompra detalleCompraBuscada = detalleCompraRepo.findById("4").orElse(null);
-
-        // se validan los cambios
         Assertions.assertEquals(3, detalleCompraBuscada.getUnidades());
 
     }
 
-    // permite hacer la prueba de que  se listan los detalles de la compra
-    @Test
+    @Test // Se listan los detalles de la compra
     @Sql({"classpath:ciudad.sql","classpath:persona.sql","classpath:usuario.sql","classpath:telefono.sql","classpath:producto.sql","classpath:compra.sql","classpath:detalleCompra.sql"})
     public void ListarTest() {
         List<DetalleCompra> detalleCompras =detalleCompraRepo.findAll();
