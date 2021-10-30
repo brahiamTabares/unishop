@@ -13,6 +13,6 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
     @Query("select c.nombre, count (p) from Categoria c join c.productos p join p.subastas s group by c")
     List<Object[]> indicarProductosEnSubastaPorCategoria();
 
-    @Query ("")
+
 
 }
