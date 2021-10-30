@@ -25,7 +25,7 @@ public class Comentario implements Serializable {
     private  String codigo;
     @Column(nullable = false,length = 210)
     private String  mensaje;
-    @Column(nullable = false,length = 210)
+    @Column(length = 210)
     private String respuesta;
     @Column(name="fecha_comentario",nullable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    // el name="fecha_comentario", indica que en base de datos asì es como se va a llamar la columna
