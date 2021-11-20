@@ -30,6 +30,8 @@ public class Persona implements Serializable {
     private String email;
     @Column(nullable = false, length = 200)
     private String password;
+    @Column(nullable = false, length = 200)
+    private String username;
 
     public Persona() {
      super();
