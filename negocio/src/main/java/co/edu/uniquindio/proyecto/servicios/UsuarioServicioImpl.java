@@ -51,8 +51,19 @@ public class UsuarioServicioImpl implements UsuarioServicio{
         return usuarioRepo.findAll();
     }
   // se debe crear el metodo obtenerProductosFavoritos
+    //@Override
+    //public List<Producto> listarFavoritos(String email) {
+        //return usuarioRepo.obtenerProductosFavoritos(email);
+      //  return
+    //}
+
     @Override
-    public List<Producto> listarFavoritos(String email) {
-        return usuarioRepo.obtenerProductosFavoritos(email);
+    public Usuario obtenerUsuario(String codigo) throws Exception {
+        Optional<Usuario> buscado=usuarioRepo.findById(codigo);
+        if(buscado.isEmpty())
+        {
+            throw new Exception("El codigo  del usuario  no existe");
+        }
+        return  buscado.get();
     }
 }

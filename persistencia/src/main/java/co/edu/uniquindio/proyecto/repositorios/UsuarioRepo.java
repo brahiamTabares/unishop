@@ -22,6 +22,7 @@ public interface UsuarioRepo extends JpaRepository<Usuario,String>{
     Optional<Usuario>findByUsername(String userName);
 
 
+
     @Override
     Page<Usuario> findAll(Pageable paginador);
 }

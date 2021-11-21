@@ -13,7 +13,10 @@ public interface UsuarioServicio {
 
     void eliminarUsuario(String codigo) throws Exception;
     List<Usuario> listarUsuarios();
-    List<Producto> listarFavoritos(String email);
+  //  List<Producto> listarFavoritos(String email);
+
+
+    Usuario obtenerUsuario(String codigo)throws  Exception;
 
 
 
