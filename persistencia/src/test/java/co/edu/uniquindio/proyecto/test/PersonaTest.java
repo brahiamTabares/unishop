@@ -48,7 +48,7 @@ public class PersonaTest {
 
     }
     @Test // permite listar las personas
-    @Sql("classpath:persona.sql")
+    @Sql("classpath:conglomerado.sql")
     public void ListarTest() {
         List<Persona> personas = personaRepo.findAll();
         personas.forEach(Persona-> System.out.println(Persona));
