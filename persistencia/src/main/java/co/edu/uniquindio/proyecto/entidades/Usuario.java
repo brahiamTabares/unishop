@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.implementation.bind.annotation.Super;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -46,8 +47,8 @@ public class Usuario extends Persona { // No requiere serializable por venir de 
         super();
     }
 
-    public Usuario(String codigo, String nombre, String email, String password, String username, Ciudad ciudad,List<String> telefonos) {
-        super(codigo, nombre, email, password, username);
+    public Usuario(String codigo, String nombre, String email, String password,String username,Ciudad ciudad,List<String> telefonos) {
+        super(codigo,nombre,email,password,username);
         this.ciudad = ciudad;
         this.telefonos = telefonos;
     }
