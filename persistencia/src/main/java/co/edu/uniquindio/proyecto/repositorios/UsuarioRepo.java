@@ -15,13 +15,16 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepo extends JpaRepository<Usuario,String>{
 
+/*
+    @Query(select u from Usuario u where u.nombre = :nombre);
+    List<Usuario>obtenerUsuariosPorNombre(String nombre);
+*/
+    //Trae la lista con los nombre
     List<Usuario>findAllByNombreContains(String nombre);
+    // Trae uno solo
     Optional<Usuario>findByEmail(String email);
-
-    Optional<Usuario>findByEmailAndPassword(String email,String clave);
-    Optional<Usuario>findByUsername(String userName);
-
-
+    Optional<Usuario>findByEmailAndPassword(String email,String password);
+    Optional<Usuario>findByUsername(String username);
 
     @Override
     Page<Usuario> findAll(Pageable paginador);

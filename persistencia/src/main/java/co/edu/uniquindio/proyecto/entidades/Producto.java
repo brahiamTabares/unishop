@@ -65,6 +65,8 @@ public class Producto implements Serializable {
     @OneToMany (mappedBy = "producto")
     private List<Subasta> subastas;
 
+    @OneToMany (mappedBy = "producto")
+    private List<Comentario> comentarios;
 
     public Producto() {
        super();

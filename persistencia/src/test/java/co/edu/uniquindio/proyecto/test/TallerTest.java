@@ -23,8 +23,19 @@ public class TallerTest {
         List<Object[]> lista = productoRepo.indicarProductosEnSubastaPorCategoria();
         for (Object[] objecto:lista) {
             System.out.println(objecto[0]+ " - "+objecto[1]);
+        }
+    }
+
+    @Test // Ejercicio 2
+    @Sql({"classpath:conglomerado.sql"})
+    public void ejercicioTest2() {
+
+        List<Object[]> lista = productoRepo.indicarCategoriasConCalificacionPromedio();
+        for (Object[] objecto:lista) {
+            System.out.println(objecto[0]+ " - "+objecto[1]);
 
         }
 
     }
+
 }
