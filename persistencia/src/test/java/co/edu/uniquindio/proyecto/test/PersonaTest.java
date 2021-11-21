@@ -24,7 +24,7 @@ public class PersonaTest {
     @Test //  Prueba para registrar una persona
     @Sql("classpath:persona.sql")
     public void registrarTest() {
-        Persona persona = new Persona("00008","Alvaro","bdtabaresv@uqvirtual.edu","15475");
+        Persona persona = new Persona("00008","Alvaro","bdtabaresv@uqvirtual.edu","15475","alvarin");
         Persona personaResgistrada = personaRepo.save(persona);
         Assertions.assertNotNull(personaResgistrada);
     }

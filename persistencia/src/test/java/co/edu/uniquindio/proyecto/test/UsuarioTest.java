@@ -37,7 +37,7 @@ public class UsuarioTest {
         Ciudad ciudad = ciudadRepo.findById("1").orElse(null);
         List<String> telefonos = new ArrayList<>();
         telefonos.add("2222222");
-        Usuario usuario = new Usuario("123", "Brahiam", "bdtabaresv@uqvirtual.edu", "1245", ciudad, telefonos);
+        Usuario usuario = new Usuario("123", "Brahiam", "bdtabaresv@uqvirtual.edu", "1245","Brahims", ciudad, telefonos);
         Usuario usuarioResgistrado = usuarioRepo.save(usuario);
         Assertions.assertNotNull(usuarioResgistrado);
     }
