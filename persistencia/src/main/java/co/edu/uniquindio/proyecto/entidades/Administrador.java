@@ -12,8 +12,8 @@ public class Administrador extends Persona { // No lleva el serializable porque 
      Método constructor
      */
 
-    public Administrador(String codigo, String nombre, String email, String password) {
-        super(codigo, nombre, email, password);
+    public Administrador(String codigo, String nombre, String email, String password,String username) {
+        super(codigo, nombre, email, password,username);
     }
 
     public Administrador() {

@@ -23,7 +23,7 @@ public class AdministradorTest {
     @Test
     @Sql({"classpath:persona.sql","classpath:administrador.sql"})
     public void registrarTest() {
-        Administrador administrador = new Administrador("123", "Miguel", "Miguela@gmail.com", "1342");
+        Administrador administrador = new Administrador("123", "Miguel", "Miguela@gmail.com", "1342","Migue");
         Administrador administradorResgistrado = administradorRepo.save(administrador);
         Assertions.assertNotNull(administradorResgistrado);
     }
