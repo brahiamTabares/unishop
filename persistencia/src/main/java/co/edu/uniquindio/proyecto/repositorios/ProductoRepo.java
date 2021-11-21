@@ -14,8 +14,10 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
 
     Optional<Producto> findByCodigo(String codigo);
     List<Producto>findAllByProductoContains(String nombre);
-
-
+    List<Producto>findAllByUnidadesContains(String unidades);
+    List<Producto>findAllByDescripcionContains(String descripcion);
+    List<Producto>findAllByPrecioContains(String precio);
+    List<Producto>findAllByFechaLimiteContains(String fechaLimite);
 
     //1.	La cantidad de productos que están en subasta por cada categoría.
     @Query("select c.nombre, count (p) from Categoria c join c.productos p join p.subastas s group by c")
