@@ -31,6 +31,11 @@ public class Envio implements Serializable, EntidadGenerica<String>{
     @OneToOne
     private Compra compra;
 
+
     public Envio() {
+        super();
     }
+
+
+
 }
