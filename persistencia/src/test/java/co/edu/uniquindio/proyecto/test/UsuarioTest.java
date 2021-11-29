@@ -62,7 +62,7 @@ public class UsuarioTest {
     }
 
     @Test // listar los usuarios
-    @Sql({"classpath:ciudad.sql", "classpath:persona.sql", "classpath:usuario.sql"})
+    @Sql({"classpath:conglomerado.sql"})
     public void ListarTest() {
         List<Usuario> usuarios = usuarioRepo.findAll();
         usuarios.forEach(Usuario -> System.out.println(Usuario));
