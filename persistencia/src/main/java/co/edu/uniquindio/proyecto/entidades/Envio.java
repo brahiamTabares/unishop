@@ -1,11 +1,18 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Envio {
 
     @Id
@@ -25,7 +32,9 @@ public class Envio {
     private Compra compra;
 
 
-
+    public Envio() {
+        super();
+    }
 
 
 

@@ -124,3 +124,8 @@ insert into Mensaje values ("1","David","2021-02-05", "Hola, tienen ipods","1");
 insert into Mensaje values ("2","Milena","2021-05-14", "Me pueden ayudar con disponiblidad","2");
 insert into Mensaje values ("3","Juan","2021-08-25", "Buenas noches","3");
 
+-- Envio
+insert into Envio values ("12","2021-12-01","cordinadora","Medellin calle 16 local 1","Cali barrio esperanza mz 2 casa 1","004");
+insert into Envio values ("22","2021-11-31","Envia","Pereira  crr  25  local 6","Armenia  barrio la virginia mz b casa 12","003");
+insert into Envio values ("54","2021-12-25","servientrega","Bogota  calle 4 local 10"," Medellin  mz c casa 15","005");
+
