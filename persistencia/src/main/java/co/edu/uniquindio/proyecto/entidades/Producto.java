@@ -67,6 +67,8 @@ public class Producto implements Serializable,EntidadGenerica<String> {
 
     @OneToMany (mappedBy = "producto")
     private List<Comentario> comentarios;
+    @ManyToOne(mappedBy = "productos")
+    private ProductoCarrito productoCarrito;
 
     public Producto() {
        super();

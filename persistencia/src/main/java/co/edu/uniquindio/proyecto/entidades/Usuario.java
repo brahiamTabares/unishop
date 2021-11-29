@@ -42,6 +42,8 @@ public class Usuario extends Persona { // No requiere serializable por venir de 
     private List<String> telefonos;
     @OneToMany (mappedBy = "usuario")
     private List<Chat> chats;
+    @OneToOne(mappedBy="usuario")
+      private ProductoCarrito productoCarrito;
 
     public Usuario() {
         super();
