@@ -12,12 +12,12 @@ import java.util.Optional;
 
 public interface ProductoRepo extends JpaRepository<Producto,String> {
 
-    Optional<Producto> findByCodigo(String codigo);
-    List<Producto>findAllByProductoContains(String nombre);
-    List<Producto>findAllByUnidadesContains(String unidades);
-    List<Producto>findAllByDescripcionContains(String descripcion);
-    List<Producto>findAllByPrecioContains(String precio);
-    List<Producto>findAllByFechaLimiteContains(String fechaLimite);
+  //  Optional<Producto> findByCodigo(String codigo);
+  //  List<Producto>findAllByProductoContains(String nombre);
+  //  List<Producto>findAllByUnidadesContains(String unidades);
+  //  List<Producto>findAllByDescripcionContains(String descripcion);
+   // List<Producto>findAllByPrecioContains(String precio);
+  //  List<Producto>findAllByFechaLimiteContains(String fechaLimite);
 
     //1.	La cantidad de productos que están en subasta por cada categoría.
     @Query("select c.nombre, count (p) from Categoria c join c.productos p join p.subastas s group by c")
@@ -70,12 +70,12 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
 
 
     // 10.	El producto más vendido de una categoría específica.
-
-    @Query ("select max(d.unidades) from DetalleCompra d join d.producto.categorias c where c.codigo = :codCategoria")
-    List<Integer>obtenerUnidadesMaximosPorDetalleCompra(String codCategoria);
-
-    @Query("select d.producto, sum(d.unidades) from DetalleCompra d  join d.producto.categorias c where c.codigo = :codCategoria group by d.producto having sum (d.unidades)")
-    List<Producto> productoMasVendido(Integer codCategoria);
+//
+//    @Query ("select max(d.unidades) from DetalleCompra d join d.producto.categorias c where c.codigo = :codCategoria")
+//    List<Integer>obtenerUnidadesMaximosPorDetalleCompra(String codCategoria);
+//
+//    @Query("select d.producto, sum(d.unidades) from DetalleCompra d  join d.producto.categorias c where c.codigo = :codCategoria group by d.producto having sum (d.unidades)")
+//    List<Producto> productoMasVendido(Integer codCategoria);
 
 
 }
