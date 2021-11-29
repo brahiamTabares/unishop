@@ -20,7 +20,7 @@ Las etiquetas @Getter, @Setter  y Contructor son para tener el còdigo màs limp
 /*
 Se agrega a cada atributo las respectivas restricciones y sus relaciones con otras entidades
  */
-public class Mensaje implements Serializable {
+public class Mensaje implements Serializable,EntidadGenerica<String> {
 
     @Id
     @EqualsAndHashCode.Include

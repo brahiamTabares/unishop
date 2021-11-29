@@ -1,56 +1,33 @@
 package co.edu.uniquindio.proyecto.servicios;
 
-import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioServicioImpl implements UsuarioServicio{
+public class UsuarioServicioImpl extends ServicioGenerico<Usuario,String,UsuarioRepo> implements UsuarioServicio{
 
-    private final UsuarioRepo usuarioRepo;
 
     public UsuarioServicioImpl(UsuarioRepo usuarioRepo) {
-        this.usuarioRepo = usuarioRepo;
+        super(usuarioRepo);
     }
 
     @Override
-    public Usuario registrarUsuario(Usuario u) throws Exception {
-        Optional<Usuario> buscado=usuarioRepo.findById(u.getCodigo());
-        if(buscado.isPresent())
-        {
-            throw new Exception("El codigo  del usuario ya existe");
-        }
-         buscado=usuarioRepo.findByEmail(u.getEmail());
-        if(buscado.isPresent())
-        {
+    public Usuario registrar(Usuario u) throws Exception {
+        Optional<Usuario> buscado=repositorio.findByEmail(u.getEmail());
+        if(buscado.isPresent()){
             throw new Exception("El email  del usuario ya existe");
         }
-        buscado=usuarioRepo.findByUsername(u.getUsername());
-
-
-        return  usuarioRepo.save(u);
+        buscado=repositorio.findByUsername(u.getUsername());
+        if(buscado.isPresent()){
+            throw new Exception("El username  del usuario ya existe");
+        }
+        return super.registrar(u);
     }
 
-    @Override
-    public Usuario actualizarUsuario(Usuario u) throws Exception {
-        return   usuarioRepo.save(u);
-    }
 
-    @Override
-    public void eliminarUsuario(String codigo) throws Exception {
-        usuarioRepo.deleteById(codigo);
-
-    }
-
-    @Override
-    public List<Usuario> listarUsuarios() {
-        return usuarioRepo.findAll();
-    }
   // se debe crear el metodo obtenerProductosFavoritos
     //@Override
     //public List<Producto> listarFavoritos(String email) {
@@ -58,13 +35,4 @@ public class UsuarioServicioImpl implements UsuarioServicio{
       //  return
     //}
 
-    @Override
-    public Usuario obtenerUsuario(String codigo) throws Exception {
-        Optional<Usuario> buscado=usuarioRepo.findById(codigo);
-        if(buscado.isEmpty())
-        {
-            throw new Exception("El codigo  del usuario  no existe");
-        }
-        return  buscado.get();
-    }
 }

@@ -32,7 +32,7 @@ public class UsuarioServicioTest {
            telefonos.add("2222222");
            Usuario u =new Usuario("123","Sandra","quinteroS@gmail.com","3654","PEPE",null,telefonos);
         try {
-            Usuario respuesta= usuarioServicio.registrarUsuario(u);
+            Usuario respuesta= usuarioServicio.registrar(u);
             Assertions.assertNotNull(respuesta);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +43,7 @@ public class UsuarioServicioTest {
     public  void eliminarTest(){
 
           try {
-              usuarioServicio.eliminarUsuario("00002");
+              usuarioServicio.eliminar("00002");
               Assertions.assertTrue(true);
           } catch (Exception e) {
               e.printStackTrace();

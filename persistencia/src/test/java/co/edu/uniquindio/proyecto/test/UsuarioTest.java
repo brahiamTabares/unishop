@@ -68,4 +68,18 @@ public class UsuarioTest {
         usuarios.forEach(Usuario -> System.out.println(Usuario));
     }
 
+    @Test // filtrar nombre
+    @Sql("classpath:conglomerado.sql")
+    public void filtrarNombreTest() {
+        List<Usuario> lista = usuarioRepo.findAllByNombreContains("Brahiam");
+        lista.forEach(u -> System.out.println(u));
+        //  lista.forEach(System.out::println);
+    }
+
+    @Test // filtrar por email
+    @Sql("classpath:conglomerado.sql")
+    public void filtrarEmailTest() {
+        List<Usuario> lista = usuarioRepo.findAllByNombreContains("Brahiam");
+        lista.forEach(u -> System.out.println(u));
+    }
 }

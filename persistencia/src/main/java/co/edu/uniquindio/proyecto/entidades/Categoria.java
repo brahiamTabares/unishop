@@ -17,7 +17,7 @@ Las etiquetas @Getter y œSetter son para tener el còdigo màs limpio, se encar
 /*
 Se agrega a cada atributo las respectivas restricciones y sus relaciones con otras entidades
  */
-public class Categoria implements Serializable {
+public class Categoria implements Serializable,EntidadGenerica<String> {
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false,length = 10)

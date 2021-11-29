@@ -20,7 +20,7 @@ Las etiquetas @Getter y œSetter son para tener el còdigo màs limpio, se encar
 /*
 Se agrega a cada atributo las respectivas restricciones y sus relaciones con otras entidades
  */
-public class Subasta implements Serializable {
+public class Subasta implements Serializable,EntidadGenerica<String> {
     @Id
     @Column(nullable = false,length = 10)
     @EqualsAndHashCode.Include
