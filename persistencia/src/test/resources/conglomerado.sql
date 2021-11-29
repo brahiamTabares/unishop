@@ -125,8 +125,8 @@ insert into Mensaje values ("2","Milena","2021-05-14", "Me pueden ayudar con dis
 insert into Mensaje values ("3","Juan","2021-08-25", "Buenas noches","3");
 
 -- Envio
-insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,direccion_destino,compra_codigo) values ("12","2021-12-01","cordinadora","Medellin calle 16 local 1","Cali barrio esperanza mz 2 casa 1","004");
-insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,direccion_destino,compra_codigo) values ("22","2021-11-30","Envia","Pereira  crr  25  local 6","Armenia  barrio la virginia mz b casa 12","003");
-insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,direccion_destino,compra_codigo) values ("54","2021-12-25","servientrega","Bogota  calle 4 local 10"," Medellin  mz c casa 15","005");
+--insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,direccion_destino,compra_codigo) values ("12","2021-12-01","cordinadora","Medellin calle 16 local 1","Cali barrio esperanza mz 2 casa 1","004");
+--insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,direccion_destino,compra_codigo) values ("22","2021-11-30","Envia","Pereira  crr  25  local 6","Armenia  barrio la virginia mz b casa 12","003");
+--insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,direccion_destino,compra_codigo) values ("54","2021-12-25","servientrega","Bogota  calle 4 local 10"," Medellin  mz c casa 15","005");
 
 
