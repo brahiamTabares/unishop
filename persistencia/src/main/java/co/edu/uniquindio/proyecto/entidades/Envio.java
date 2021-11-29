@@ -1,12 +1,19 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-public class Envio {
+@Getter
+@Setter
+@AllArgsConstructor
+
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class Envio implements Serializable, EntidadGenerica<String>{
 
     @Id
     @Column(length = 10)
@@ -24,9 +31,6 @@ public class Envio {
     @OneToOne
     private Compra compra;
 
-
-
-
-
-
+    public Envio() {
+    }
 }
