@@ -6,6 +6,7 @@ import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -26,15 +27,30 @@ public class UsuarioServicioTest {
     @Test
 
        public void registrarTest(){
-         Ciudad ciudad = ciudadRepo.findById("2").orElse(null);
+
            List<String> telefonos = new ArrayList<>();
            telefonos.add("2222222");
-           Usuario u =new Usuario("123","Sandra","quinteroS@gmail.com","3654","PEPE",ciudad,telefonos);
+           Usuario u =new Usuario("123","Sandra","quinteroS@gmail.com","3654","PEPE",null,telefonos);
         try {
-            usuarioServicio.registrarUsuario(u);
+            Usuario respuesta= usuarioServicio.registrarUsuario(u);
+            Assertions.assertNotNull(respuesta);
         } catch (Exception e) {
             e.printStackTrace();
+            Assertions.assertTrue(false);
         }
     }
+      @Test
+    public  void eliminarTest(){
+
+          try {
+              usuarioServicio.eliminarUsuario("00002");
+              Assertions.assertTrue(true);
+          } catch (Exception e) {
+              e.printStackTrace();
+              Assertions.assertTrue(false);
+          }
+
+
+      }
 
 }
