@@ -43,6 +43,8 @@ public class Compra implements Serializable,EntidadGenerica<String> {
     @ManyToOne
     @JoinColumn (name="codigo_usuario")
     private Usuario usuario;
+    @OneToOne(mappedBy="compra")
+    private Envio envio;
 
     public Compra() {
        super();
