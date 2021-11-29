@@ -1,11 +1,10 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import lombok.Getter;
 import lombok.Setter;
-import net.bytebuddy.implementation.bind.annotation.Super;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 /*

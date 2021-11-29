@@ -22,14 +22,14 @@ public class Envio implements Serializable, EntidadGenerica<String>{
     @Column(name="fecha_Envio",nullable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fechaEnvio;
 
-    @Column(length = 50)
-    private String   NombreEmpraTransporta;
     @Column(length = 100)
     private String direccionOrigen;
     @Column(length = 100)
     private String direccionDestino;
     @OneToOne
     private Compra compra;
+    @ManyToOne
+    private Transportadora transportadora;
 
 
     public Envio() {

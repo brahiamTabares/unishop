@@ -129,4 +129,4 @@ insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,di
 insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,direccion_destino,compra_codigo) values ("22","2021-11-30","Envia","Pereira  crr  25  local 6","Armenia  barrio la virginia mz b casa 12","003");
 insert into Envio(codigo,fecha_envio,nombre_empra_transporta,direccion_origen,direccion_destino,compra_codigo) values ("54","2021-12-25","servientrega","Bogota  calle 4 local 10"," Medellin  mz c casa 15","005");
 
--- ProductoCarrito
+

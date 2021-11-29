@@ -1,22 +1,23 @@
-package co.edu.uniquindio.proyecto.entidades;
+package co.edu.uniquindio.proyecto.dto;
 
+import co.edu.uniquindio.proyecto.entidades.EntidadGenerica;
+import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.Usuario;
 import lombok.*;
-import net.bytebuddy.implementation.bind.annotation.Super;
-import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class ProductoCarrito implements Serializable, EntidadGenerica<String>{
+public class ProductoCarrito implements Serializable, EntidadGenerica<String> {
 
-    @Id
     @Column(length = 10)
     @EqualsAndHashCode.Include
     private String codigo;
@@ -30,7 +31,7 @@ public class ProductoCarrito implements Serializable, EntidadGenerica<String>{
     private Integer unidades;
      @OneToOne
     private Usuario usuario;
-     @OneToMany
+     @ManyToMany
      private List<Producto> productos;
 
 

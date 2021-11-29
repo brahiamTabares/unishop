@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -67,8 +68,7 @@ public class Producto implements Serializable,EntidadGenerica<String> {
 
     @OneToMany (mappedBy = "producto")
     private List<Comentario> comentarios;
-    @ManyToOne(mappedBy = "productos")
-    private ProductoCarrito productoCarrito;
+
 
     public Producto() {
        super();
