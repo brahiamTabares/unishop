@@ -24,7 +24,7 @@ public class EnvioTest {
 
 
      @Test // Prueba para registrar un Envio
-     @Sql({"classpath:conglomeado.sql"})
+     @Sql({"classpath:conglomerado.sql"})
      public void registrarTest() {
 
 

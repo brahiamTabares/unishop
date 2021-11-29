@@ -20,13 +20,13 @@ public class Envio implements Serializable, EntidadGenerica<String>{
     @EqualsAndHashCode.Include
     private String codigo;
     @Column(name="fecha_Envio",nullable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime fechaEmvio;
+    private LocalDateTime fechaEnvio;
 
-    @Column(length = 20)
+    @Column(length = 50)
     private String   NombreEmpraTransporta;
-    @Column(length = 20)
+    @Column(length = 100)
     private String direccionOrigen;
-    @Column(length = 20)
+    @Column(length = 100)
     private String direccionDestino;
     @OneToOne
     private Compra compra;
