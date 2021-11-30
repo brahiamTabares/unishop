@@ -14,7 +14,7 @@
         <p:growl id="messages" />
         <p:toolbar>
             <p:toolbarGroup>
-                <p:commandButton value="Nuevo" icon="pi pi-plus" actionListener="#{categoriaBean.newEntity}"
+                <p:commandButton value="Nuevo" icon="pi pi-plus" actionListener="#{ciudadBean.newEntity}"
                                  update=":form:manage-entity-content" oncomplete="PF('manageEntityDialog').show()"
                                  styleClass="ui-button-success" style="margin-right: .5rem">
                     <p:resetInput target=":form:manage-entity-content"/>
@@ -29,7 +29,7 @@
                      rows="10" rowSelectMode="add" paginatorPosition="bottom">
             <f:facet name="header">
                 <div class="entity-table-header">
-                    <span style="font-weight: bold">CATEGORIAS</span>
+                    <span style="font-weight: bold">CIUDADES</span>
                     <span class="filter-container ui-input-icon-left">
                         <i class="pi pi-search"></i>
                         <p:inputText id="globalFilter" onkeyup="PF('dtEntities').filter()" placeholder="Buscar"/>
@@ -40,19 +40,19 @@
             <p:column headerText="Código" filterBy="#{entity.codigo}" filterStyle="display: none" >
                 <h:outputText value="#{entity.codigo}"/>
             </p:column>
-            <p:column headerText="Nombre" filterBy="#{entity.nombre}" filterStyle="display: none" >
+            <p:column headerText="Nombre" filterBy="#{entity.nombre}" filterStyle="display: none">
                 <h:outputText value="#{entity.nombre}"/>
             </p:column>
             <p:column exportable="false">
                 <p:commandButton icon="pi pi-pencil" update=":form:manage-entity-content"
                                  oncomplete="PF('manageEntityDialog').show()"
                                  styleClass="edit-button rounded-button ui-button-success" process="@this">
-                    <f:setPropertyActionListener value="#{entity}" target="#{categoriaBean.selectedEntity}"/>
+                    <f:setPropertyActionListener value="#{entity}" target="#{ciudadBean.selectedEntity}"/>
                     <p:resetInput target=":form:manage-entity-content"/>
                 </p:commandButton>
                 <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this"
                                  oncomplete="PF('deleteEntityDialog').show()">
-                    <f:setPropertyActionListener value="#{entity}" target="#{categoriaBean.selectedEntity}"/>
+                    <f:setPropertyActionListener value="#{entity}" target="#{ciudadBean.selectedEntity}"/>
                 </p:commandButton>
             </p:column>
 

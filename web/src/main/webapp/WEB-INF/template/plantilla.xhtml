@@ -27,12 +27,22 @@
         <div id="header" align='center'>
             <ui:insert name="header">
 
-                <p:graphicImage name="LogoSafePet.png" library="images"  style="width: 20%" />
+                <ui:include src="loginDialogo.xhtml" />
+                <ui:include src="registrarDialogo.xhtml" />
+                <p:graphicImage name="iShop.png" library="images"  style="width: 20%" />
 
                 <!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
                 <!-- <ui:include src="header.xhtml"/> -->
             </ui:insert>
             <br />
+
+            <p:commandButton styleClass="ui-button-raised ui-button-warning" icon="pi pi-user"
+                             iconPos="left" value="Login" onclick="PF('login').show()"
+                             rendered="#{!seguridadBean.autenticado}" />
+            <p:commandButton styleClass="ui-button-raised ui-button-warning" icon="pi pi-user"
+                             iconPos="left" value="Registrarse" onclick="PF('registar').show()"
+                             rendered="#{!seguridadBean.autenticado}" />
+
         </div>
         <br />
 

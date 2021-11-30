@@ -12,7 +12,12 @@
     <title>Página de Inicio</title>
 </h:head>
 <h:body>
+    <ui:composition template="/WEB-INF/template/plantilla.xhtml">
+    <ui:define name="content">
+
     <h1>Hola Mundo</h1>
     <h1>#{inicioBean.mensaje}</h1>
+    </ui:define>
+    </ui:composition>
 </h:body>
 </html>
