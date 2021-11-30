@@ -6,19 +6,14 @@ import java.io.Serializable;
 
 public abstract class AbstracBean implements Serializable {
 
-    private FacesContext facesContext;
-
     protected FacesContext getFacesContext() {
-        if( facesContext == null ){
-            facesContext = FacesContext.getCurrentInstance();
-        }
-        return facesContext;
+        return FacesContext.getCurrentInstance();
     }
 
     protected void showMessage(String idComponente, String message, FacesMessage.Severity severidad) {
         FacesMessage facesMessage = new FacesMessage(severidad, message, message);
         if( getFacesContext() != null ) {
-            //getFacesContext().addMessage(idComponente, facesMessage);
+            getFacesContext().addMessage(idComponente, facesMessage);
         }
     }
 

@@ -8,16 +8,28 @@
           xmlns:p="http://primefaces.org/ui">
   <h:form id="registrarForm" >
     <h:panelGrid columns="3" cellpadding="5">
+      <p:outputLabel for="nombre" value="Nombre:" />
+      <p:inputText id="nombre" value="#{usuarioBean.selectedEntity.nombre}" required="true" />
+      <p:message for="nombre" />
       <p:outputLabel for="email_login" value="Email:" />
-      <p:inputText id="email_login" value="#{seguridadBean.email}" required="true" />
+      <p:inputText id="email_login" value="#{usuarioBean.selectedEntity.email}" required="true" />
       <p:message for="email_login" />
       <p:outputLabel for="password_login" value="Password:" />
-      <p:password id="password_login" value="#{seguridadBean.password}" required="true"
-      />
+      <p:password id="password_login" value="#{usuarioBean.selectedEntity.password}" match="password_login2" required="true"/>
+      <p:message for="password_login" />
+      <p:outputLabel for="password_login2" value="Password:" />
+      <p:password id="password_login2" value="#{usuarioBean.selectedEntity.password}" required="true"/>
       <p:message for="password_login" />
     </h:panelGrid>
-    <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
-                     styleClass="mt-4" update="@form" icon="pi pi-sign-in" iconPos="left" />
-    <p:growl for="login-bean" showDetail="true" />
+
+
+    <p:commandButton value="Registrarse" action="#{usuarioBean.registrar}"
+                     styleClass="mt-4" update="@form" icon="pi pi-check" iconPos="left" />
+    <p:commandButton value="Cancelar" onclick="PF('registrar').hide()"
+                     class="ui-button-secondary"
+                     styleClass="mt-4" icon="pi pi-times" iconPos="left" />
+
+
+    <p:growl for="usuario-bean" showDetail="true" />
   </h:form>
 </p:dialog>

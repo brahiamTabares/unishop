@@ -21,7 +21,7 @@ Se agrega a cada atributo las respectivas restricciones y sus relaciones con otr
 public class Persona implements Serializable,EntidadGenerica<String> {
 
     @Id
-     @Column(length = 10)
+     @Column(length = 36)
     @EqualsAndHashCode.Include
     private String codigo;
     @Column(nullable = false,length = 50)

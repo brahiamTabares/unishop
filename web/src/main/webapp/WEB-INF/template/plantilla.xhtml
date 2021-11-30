@@ -39,8 +39,8 @@
             <p:commandButton styleClass="ui-button-raised ui-button-warning" icon="pi pi-user"
                              iconPos="left" value="Login" onclick="PF('login').show()"
                              rendered="#{!seguridadBean.autenticado}" />
-            <p:commandButton styleClass="ui-button-raised ui-button-warning" icon="pi pi-user"
-                             iconPos="left" value="Registrarse" onclick="PF('registar').show()"
+            <p:commandButton styleClass="ui-button-raised ui-button-warning" icon="pi pi-plus" actionListener="#{usuarioBean.newEntity}"
+                             iconPos="left" value="Registrarse" oncomplete="PF('registrar').show()"
                              rendered="#{!seguridadBean.autenticado}" />
 
         </div>
