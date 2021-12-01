@@ -12,20 +12,10 @@
 <f:view>
     <h:form id="form">
         <p:growl id="messages" />
-        <p:toolbar>
-            <p:toolbarGroup>
-                <p:commandButton value="Nuevo" icon="pi pi-plus" actionListener="#{productoBean.newEntity}"
-                                 update=":form:manage-entity-content" oncomplete="PF('manageEntityDialog').show()"
-                                 styleClass="ui-button-success" style="margin-right: .5rem">
-                    <p:resetInput target=":form:manage-entity-content"/>
-                </p:commandButton>
-            </p:toolbarGroup>
 
-        </p:toolbar>
-
-        <p:dataTable id="dt-entities" widgetVar="dtEntities" var="entity" value="#{productoBean.entities}"
+        <p:dataTable id="dt-entities" widgetVar="dtEntities" var="entity" value="#{navegarProductosBean.entities}"
                      reflow="true" styleClass="entity-table"
-                     selection="#{productoBean.selectedEntities}" rowKey="#{entity.dny}" paginator="true"
+                     selection="#{navegarProductosBean.selectedEntities}" rowKey="#{entity.dny}" paginator="true"
                      rows="10" rowSelectMode="add" paginatorPosition="bottom">
             <f:facet name="header">
                 <div class="entity-table-header">
@@ -55,7 +45,13 @@
             <p:column headerText="Descuento" filterBy="#{entity.descuento}" filterStyle="display: none" >
                 <h:outputText value="#{entity.descuento}"/>
             </p:column>
-            <p:column headerText="Categorias">
+            <p:column headerText="Categorias" filterBy="#{entity.categorias}" filterFunction="#{navegarProductosBean.filterByCategoria}">
+                <f:facet name="filter">
+                    <p:selectOneMenu onchange="PF('dtEntities').filter()" styleClass="custom-filter" >
+                        <f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{categoriaBean.entities}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.codigo}" />
+                    </p:selectOneMenu>
+                </f:facet>
                 <p:repeat value="#{entity.categorias}" var="categoria">
                     <p:panelGrid >
                         <p:row>
@@ -66,32 +62,30 @@
                     </p:panelGrid>
                 </p:repeat>
             </p:column>
-            <p:column headerText="Ciudad" filterBy="#{entity.ciudad.nombre}" filterStyle="display: none" >
-                <h:outputText value="#{entity.ciudad.nombre}"/>
-            </p:column>
             <p:column exportable="false">
-                <p:commandButton icon="pi pi-pencil" update=":form:manage-entity-content"
+                <p:commandButton icon="pi pi-list" update=":form:manage-entity-content" actionListener="#{navegarProductosBean.newComentario(entity.codigo)}"
                                  oncomplete="PF('manageEntityDialog').show()"
                                  styleClass="edit-button rounded-button ui-button-success" process="@this">
-                    <f:setPropertyActionListener value="#{entity}" target="#{productoBean.selectedEntity}"/>
+                    <f:setPropertyActionListener value="#{entity}" target="#{navegarProductosBean.selectedEntity}"/>
                     <p:resetInput target=":form:manage-entity-content"/>
                 </p:commandButton>
-                <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this"
-                                 oncomplete="PF('deleteEntityDialog').show()">
+                <p:commandButton icon="pi pi-eye" update=":form:dt-comentarios"
+                                 actionListener="#{navegarProductosBean.cargarComentarios(entity.codigo)}"
+                                 oncomplete="PF('comentariosDialog').show()"
+                                 styleClass="edit-button rounded-button ui-button-success" process="@this">
                     <f:setPropertyActionListener value="#{entity}" target="#{productoBean.selectedEntity}"/>
+                    <p:resetInput target=":form:dt-comentarios"/>
+                </p:commandButton>
+                <p:commandButton icon="pi pi-star" update=":form"
+                                 styleClass="edit-button rounded-button #{navegarProductosBean.favoritos.contains(entity) ? 'ui-button-warning':'ui-button-success' }"
+                                 process="@this" action="#{navegarProductosBean.actualizarFavoritos(entity)}">
+
                 </p:commandButton>
             </p:column>
 
         </p:dataTable>
-
-        <ui:include src="__form.xhtml" />
-        <p:confirmDialog widgetVar="deleteEntityDialog" showEffect="fade" width="300"
-                         message="Borrar el registro?" header="Confirmación" severity="warn">
-            <p:commandButton value="Si" icon="pi pi-check" actionListener="#{productoBean.delete}"
-                             process="@this" oncomplete="PF('deleteEntityDialog').hide()"/>
-            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
-                             onclick="PF('deleteEntityDialog').hide()"/>
-        </p:confirmDialog>
+        <ui:include src="__formComentario.xhtml" />
+        <ui:include src="__formComentarios.xhtml" />
     </h:form>
 </f:view>
 </ui:define>

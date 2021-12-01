@@ -56,6 +56,9 @@
                     </p:panelGrid>
                 </p:repeat>
             </p:column>
+            <p:column headerText="Ciudad" filterBy="#{entity.ciudad.nombre}" filterStyle="display: none" >
+                <h:outputText value="#{entity.ciudad.nombre}"/>
+            </p:column>
             <p:column exportable="false">
                 <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-star" process="@this"
                                  oncomplete="PF('deleteEntityDialog').show()">

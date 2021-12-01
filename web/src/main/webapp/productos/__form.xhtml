@@ -48,11 +48,21 @@
                         <f:selectItems value="#{categoriaBean.entities}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria}" />
                     </p:selectCheckboxMenu>
                 </div>
+                <div class="p-field">
+                    <p:outputLabel for="ciudades">Ciudad</p:outputLabel>
+                    <p:selectOneMenu id="ciudades" value="#{productoBean.selectedEntity.ciudad}" label="Ciudad" style="min-width: 15rem"
+                                           filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250" required="true"
+                                            >
+                        <f:selectItem itemLabel="Seleccione una ciudad" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{ciudadBean.entities}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}" />
+                        <f:converter binding="#{ciudadConverter}" />
+                    </p:selectOneMenu>
+                </div>
             </p:outputPanel>
         </p:outputPanel>
         <f:facet name="footer">
             <p:commandButton value="Guardar" icon="pi pi-check" actionListener="#{productoBean.save}"
-                             update="manage-entity-content" process="manage-entity-content @this"/>
+                             update="manage-entity-content @form" process="manage-entity-content @this"/>
             <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageEntityDialog').hide()"
                              class="ui-button-secondary"/>
         </f:facet>
