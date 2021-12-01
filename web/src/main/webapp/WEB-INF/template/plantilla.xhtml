@@ -42,6 +42,17 @@
             <p:commandButton styleClass="ui-button-raised ui-button-warning" icon="pi pi-plus" actionListener="#{usuarioBean.newEntity}"
                              iconPos="left" value="Registrarse" oncomplete="PF('registrar').show()"
                              rendered="#{!seguridadBean.autenticado}" />
+            <h:form id="formMenu">
+                <p:menubar rendered="#{seguridadBean.autenticado}">
+                    <p:menuitem value="Publicar Productos" icon="pi pi-fw pi-calendar" action="/productos/index.xhtml?faces-redirect=true" rendered="#{seguridadBean.user}" />
+                    <p:menuitem value="Lista de Productos" icon="pi pi-fw pi-calendar" action="/productos/navegar.xhtml?faces-redirect=true" rendered="#{seguridadBean.user}" />
+                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-calendar" action="/productos/favoritos.xhtml?faces-redirect=true" rendered="#{seguridadBean.user}" />
+                    <p:menuitem value="Categorias" icon="pi pi-fw pi-calendar" action="/categorias/index.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                    <p:menuitem value="Ciudades" icon="pi pi-fw pi-calendar" action="/ciudades/index.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                    <p:menuitem value="Administradores" icon="pi pi-fw pi-calendar" action="/administradores/index.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                    <p:menuitem value="Salir" icon="pi pi-fw pi-sign-out" action="#{seguridadBean.cerrarSesion}" ajax="false" />
+                </p:menubar>
+            </h:form>
 
         </div>
         <br />

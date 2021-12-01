@@ -43,7 +43,10 @@ public class Producto implements Serializable,EntidadGenerica<String> {
      private LocalDate fechaLimite;
     @Positive
     private float descuento;
-    @ManyToMany(mappedBy = "productos")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (name ="Producto_Categoria", joinColumns = @JoinColumn (name = "codigo_producto",
+            nullable = false), inverseJoinColumns = @JoinColumn (name ="codigo_categoria", nullable = false))
+    // El inverseJoingColumns define la llave foránea que está ligada con producto
     private List<Categoria> categorias;
     @ManyToOne
     @JoinColumn (name="codigo_ciudad")

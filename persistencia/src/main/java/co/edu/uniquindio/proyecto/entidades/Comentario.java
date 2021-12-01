@@ -21,7 +21,7 @@ Se agrega a cada atributo las respectivas restricciones y sus relaciones con otr
 public class Comentario implements Serializable,EntidadGenerica<String> {
     @Id
     @EqualsAndHashCode.Include
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false,length = 50)
     private  String codigo;
     @Column(nullable = false,length = 210)
     private String  mensaje;

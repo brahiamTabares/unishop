@@ -18,6 +18,8 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
   //  List<Producto>findAllByDescripcionContains(String descripcion);
    // List<Producto>findAllByPrecioContains(String precio);
   //  List<Producto>findAllByFechaLimiteContains(String fechaLimite);
+  @Query("select p from Producto p where p.vendedor.codigo = :codigo")
+    List<Producto>findAllByVendedor(String codigo);
 
     //1.	La cantidad de productos que están en subasta por cada categoría.
     @Query("select c.nombre, count (p) from Categoria c join c.productos p join p.subastas s group by c")
@@ -30,7 +32,12 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
     List<Object[]> indicarCategoriasConCalificacionPromedio();
     //group by c
 
-    // 3.	La cantidad de compras que se hace por cada medio de pago disponible.
+    @Query("select p from Usuario u join u.productosFavoritos p where u.codigo = :codigo")
+    List<Producto> obtenerFavoritos(String codigo);
+
+
+
+  // 3.	La cantidad de compras que se hace por cada medio de pago disponible.
 
     @Query("select c.medioPago, count(c) from Compra c group by c.medioPago")
 

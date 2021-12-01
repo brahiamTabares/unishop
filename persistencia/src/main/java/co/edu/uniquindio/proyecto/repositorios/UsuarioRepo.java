@@ -13,11 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UsuarioRepo extends JpaRepository<Usuario,String>{
+public interface UsuarioRepo extends PersonaRepo<Usuario>{
 
-     List<Usuario>findAllByNombreContains(String nombre);
-    Optional<Usuario>findByEmail(String email);
-    Optional<Usuario>findByEmailAndPassword(String email,String password);
-    Optional<Usuario>findByUsername(String username);
 
 }

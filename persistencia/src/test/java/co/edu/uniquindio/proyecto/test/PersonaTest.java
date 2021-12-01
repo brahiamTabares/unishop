@@ -18,7 +18,7 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class PersonaTest {
      @Autowired
-    private PersonaRepo personaRepo;
+    private PersonaRepo<Persona> personaRepo;
 
 
     @Test //  Prueba para registrar una persona

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<f:view>
+
+    <p:dialog id="dialogComentarios" widgetVar="comentariosDialog">
+
+        <p:dataTable id="dt-comentarios" widgetVar="dtComentarios" var="entity" value="#{navegarProductosBean.comentarios}"
+                     reflow="true" styleClass="entity-table"
+                     rowKey="#{entity.codigo}" paginator="true"
+                     rows="10" rowSelectMode="add" paginatorPosition="bottom">
+            <f:facet name="header">
+                <div class="entity-table-header">
+                    <span style="font-weight: bold">Comentario</span>
+                    <span class="filter-container ui-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <p:inputText onkeyup="PF('dtComentarios').filter()" placeholder="Buscar"/>
+                    </span>
+                </div>
+            </f:facet>
+            <!-- COLUMNAS DE LOS ATRIBUTOS QUE DESEO MOSTRAR EN LA TABLA -->
+            <p:column headerText="Código" filterBy="#{entity.codigo}" filterStyle="display: none" >
+                <h:outputText value="#{entity.codigo}"/>
+            </p:column>
+            <p:column headerText="Calificación" filterBy="#{entity.calificacion}" filterStyle="display: none" >
+                <p:rating value="#{entity.calificacion}" readonly="true"/>
+            </p:column>
+            <p:column headerText="Mensaje" filterBy="#{entity.mensaje}" filterStyle="display: none" >
+                <h:outputText value="#{entity.mensaje}"/>
+            </p:column>
+            <p:column headerText="Fecha" filterBy="#{entity.fechaComentario}" filterStyle="display: none" >
+                <h:outputText value="#{entity.fechaComentario}"/>
+            </p:column>
+            <p:column headerText="Autor" filterBy="#{entity.usuario.nombre}" filterStyle="display: none" >
+                <h:outputText value="#{entity.usuario.nombre}"/>
+            </p:column>
+        </p:dataTable>
+
+        <f:facet name="footer">
+            <p:commandButton value="Close" icon="pi pi-times" onclick="PF('comentariosDialog').hide()"
+                             class="ui-button-secondary"/>
+        </f:facet>
+    </p:dialog>
+</f:view>
+</html>

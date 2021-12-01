@@ -16,6 +16,10 @@ public class ServicioGenerico<T extends EntidadGenerica<K>,K,R extends JpaReposi
         this.repositorio = repositorio;
     }
 
+    protected R getRepositorio(){
+        return repositorio;
+    }
+
     @Override
     public T registrar(T entidad) throws Exception {
         Optional<T> buscado= repositorio.findById(entidad.getCodigo());

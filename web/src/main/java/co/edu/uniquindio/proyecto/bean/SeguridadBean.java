@@ -1,5 +1,7 @@
 package co.edu.uniquindio.proyecto.bean;
 
+import co.edu.uniquindio.proyecto.entidades.Administrador;
+import co.edu.uniquindio.proyecto.entidades.Persona;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.SeguridadServicio;
 import lombok.Getter;
@@ -13,10 +15,9 @@ import java.io.Serializable;
 
 @Component
 @SessionScope
-@Getter
-@Setter
+@Getter @Setter
 public class SeguridadBean extends AbstracBean implements Serializable {
-    private Usuario usuario;
+    private Persona usuario;
     private boolean autenticado;
     private String email;
     private String password;
@@ -29,6 +30,14 @@ public class SeguridadBean extends AbstracBean implements Serializable {
     @PostConstruct
     private void inicializar(){
 
+    }
+
+    public boolean isUser(){
+        return usuario instanceof Usuario;
+    }
+
+    public boolean isAdministrador(){
+        return usuario instanceof Administrador;
     }
 
     public String iniciarSesion(){
@@ -47,5 +56,9 @@ public class SeguridadBean extends AbstracBean implements Serializable {
         usuario = null;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index?faces-redirect=true";
+    }
+
+    public String getRol(){
+        return usuario != null && autenticado ? usuario.getClass().getSimpleName() : "";
     }
 }

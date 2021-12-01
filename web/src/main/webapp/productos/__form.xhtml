@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<f:view>
+
+    <p:dialog id="dialog" widgetVar="manageEntityDialog">
+        <p:outputPanel id="manage-entity-content" class="ui-fluid">
+            <p:outputPanel rendered="#{not empty productoBean.selectedEntity}">
+                <div class="p-field">
+                    <p:outputLabel for="id">Código</p:outputLabel>
+                    <p:inputText id="id" value="#{productoBean.selectedEntity.codigo}" required="true" readonly="#{productoBean.updating}" />
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="nombre">Nombre</p:outputLabel>
+                    <p:inputText id="nombre" value="#{productoBean.selectedEntity.nombre}"/>
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="unidades">Unidades</p:outputLabel>
+                    <p:inputText id="unidades" value="#{productoBean.selectedEntity.unidades}"/>
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="descripcion">Descripción</p:outputLabel>
+                    <p:inputText id="descripcion" value="#{productoBean.selectedEntity.descripcion}"/>
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="precio">Precio</p:outputLabel>
+                    <p:inputText id="precio" value="#{productoBean.selectedEntity.precio}"/>
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="fechaLimite">Fecha Limite</p:outputLabel>
+                    <p:datePicker id="fechaLimite" value="#{productoBean.selectedEntity.fechaLimite}" pattern="yyyy-MM-dd"
+                                  showButtonBar="true" mask="true"/>
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="descuento">Descuento</p:outputLabel>
+                    <p:inputText id="descuento" value="#{productoBean.selectedEntity.descuento}"/>
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="categorias">Categorias</p:outputLabel>
+                    <p:selectCheckboxMenu id="categorias" value="#{productoBean.selectedEntity.categorias}" label="Categorias" style="min-width: 15rem"
+                                          multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250" >
+                        <f:selectItems value="#{categoriaBean.entities}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria}" />
+                    </p:selectCheckboxMenu>
+                </div>
+            </p:outputPanel>
+        </p:outputPanel>
+        <f:facet name="footer">
+            <p:commandButton value="Guardar" icon="pi pi-check" actionListener="#{productoBean.save}"
+                             update="manage-entity-content" process="manage-entity-content @this"/>
+            <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageEntityDialog').hide()"
+                             class="ui-button-secondary"/>
+        </f:facet>
+    </p:dialog>
+</f:view>
+</html>

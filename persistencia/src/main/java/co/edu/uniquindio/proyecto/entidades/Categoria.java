@@ -25,10 +25,7 @@ public class Categoria implements Serializable,EntidadGenerica<String> {
     @Column(nullable = false,length = 50)
     private String nombre;
 
-    @ManyToMany
-    @JoinTable (name ="Producto_Categoria", joinColumns = @JoinColumn (name = "codigo_categoria",
-            nullable = false), inverseJoinColumns = @JoinColumn (name ="codigo_producto", nullable = false))
-        // El inverseJoingColumns define la llave foránea que está ligada con producto
+    @ManyToMany(mappedBy = "categorias")
     private List<Producto> productos;
 
     public Categoria(String codigo, String nombre) {
@@ -39,5 +36,6 @@ public class Categoria implements Serializable,EntidadGenerica<String> {
     public Categoria() {
 
     }
+
 }
 

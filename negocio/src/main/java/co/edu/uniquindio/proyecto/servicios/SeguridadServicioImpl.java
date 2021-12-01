@@ -1,25 +1,22 @@
 package co.edu.uniquindio.proyecto.servicios;
 
-import co.edu.uniquindio.proyecto.entidades.Usuario;
-import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
+import co.edu.uniquindio.proyecto.entidades.Persona;
+import co.edu.uniquindio.proyecto.repositorios.PersonaRepo;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class SeguridadServicioImpl implements SeguridadServicio{
 
-    private UsuarioRepo usuarioRepo;
+    private PersonaRepo<Persona> personaRepo;
 
-    public SeguridadServicioImpl(UsuarioRepo repositorio) {
-        this.usuarioRepo = repositorio;
-
+    public SeguridadServicioImpl(PersonaRepo<Persona> repositorio) {
+        this.personaRepo = repositorio;
     }
 
     @Override
-    public Usuario autenticar(String username, String password) {
-        return usuarioRepo.findByUsername(username)
-                .filter(u->u.getPassword().equals(password))
+    public Persona autenticar(String username, String password) {
+        return personaRepo.findByUsernameAndPassword(username,password)
                 .orElseThrow( ()->{throw new RuntimeException("Usuario o clave incorrecta");} );
     }
+
 }

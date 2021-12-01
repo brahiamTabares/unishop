@@ -31,8 +31,12 @@ public abstract class GenericEntityBean<T extends EntidadGenerica<K>,K,S extends
 
     @PostConstruct
     public void initialize(){
-        entities = service.listar();
+        poblarEntities();
         newEntity();
+    }
+
+    protected void poblarEntities(){
+        entities = service.listar();
     }
 
     public void newEntity() {
@@ -57,6 +61,7 @@ public abstract class GenericEntityBean<T extends EntidadGenerica<K>,K,S extends
             entities.add(selectedEntity);
             showMessageInfo(null,"Operación exitosa");
         }catch (Exception e){
+            e.printStackTrace();
             showMessageError(null,"No se pudo completar la operación");
         }
     }
