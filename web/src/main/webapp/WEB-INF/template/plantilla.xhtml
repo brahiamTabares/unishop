@@ -29,6 +29,7 @@
 
                 <ui:include src="loginDialogo.xhtml" />
                 <ui:include src="registrarDialogo.xhtml" />
+                <ui:include src="recuperarDialogo.xhtml" />
                 <p:graphicImage name="iShop.png" library="images"  style="width: 20%" />
 
                 <!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
@@ -41,6 +42,9 @@
                              rendered="#{!seguridadBean.autenticado}" />
             <p:commandButton styleClass="ui-button-raised ui-button-warning" icon="pi pi-plus" actionListener="#{usuarioBean.newEntity}"
                              iconPos="left" value="Registrarse" oncomplete="PF('registrar').show()"
+                             rendered="#{!seguridadBean.autenticado}" />
+            <p:commandButton styleClass="ui-button-raised ui-button-warning" icon="pi pi-key" actionListener="#{usuarioBean.newEntity}"
+                             iconPos="left" value="Recuperar clave" oncomplete="PF('recuperar').show()"
                              rendered="#{!seguridadBean.autenticado}" />
             <h:form id="formMenu">
                 <p:menubar rendered="#{seguridadBean.autenticado}">

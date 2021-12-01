@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<p:dialog header="Iniciar sesión" showEffect="fade" widgetVar="recuperar" modal="true"
+          rendered="#{!seguridadBean.autenticado}"  xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:ui="http://java.sun.com/jsf/facelets"
+          xmlns:p="http://primefaces.org/ui">
+  <h:form id="recuperarForm">
+    <h:panelGrid columns="3" cellpadding="5">
+      <p:outputLabel for="email_login" value="Email:" />
+      <p:inputText id="email_login" value="#{seguridadBean.email}" required="true" />
+      <p:message for="email_login" />
+    </h:panelGrid>
+    <p:commandButton value="Recuperar" action="#{seguridadBean.recuperar}"
+                     styleClass="mt-4" update="@form" icon="pi pi-sign-in" iconPos="left" />
+    <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('recuperarForm').hide()"
+                     class="ui-button-secondary"/>
+    <p:growl for="recuperar-bean" showDetail="true" />
+  </h:form>
+</p:dialog>

@@ -51,6 +51,15 @@ public class SeguridadBean extends AbstracBean implements Serializable {
         }
     }
 
+    public void recuperar(){
+        try {
+            servicio.recuperar(email);
+            showMessageInfo("recuperar-bean","Correo enviado");
+        }catch (Exception e){
+            showMessageError("recuperar-bean",e.getMessage());
+        }
+    }
+
     public String cerrarSesion() {
         autenticado = false;
         usuario = null;
