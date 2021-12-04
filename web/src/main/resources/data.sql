@@ -11,14 +11,14 @@ insert into ciudad values ("4","Bogotá");
 insert into ciudad values ("5","Medellín");
 -- persona
 
-insert into persona values ("00001","administrador@unishop.com", "Sandra Quintero", "123shop","sandris");
-insert into persona values ("00002","camilo_luz@gmail.com", "Camilo Ortega", "123shop", "camilin");
-insert into persona values ("00003","luisaMaria@hotmail.com", "Luisa Castro", "456shop","luisita");
-insert into persona values ("00004","administrador2@unishop.com", "Alvaro Arias", "123shop", "alvarin");
-insert into persona values ("00005","administrador3@unishop.com", "Brahiam Tabares", "123shop", "brahims");
-insert into persona values ("00006","carito_quindio@gmail.com", "Carolina Jimenez", "123456","carolis");
-insert into persona values ("1","1", "root", "12345","1");
-insert into persona values ("2","2", "prueba", "12345","2");
+insert into persona values ("00001","smquinterol@uqvirtual.edu.co", "Sandra Quintero", "123shop","smquinterol@uqvirtual.edu.co");
+insert into persona values ("00002","camilo_luz@gmail.com", "Camilo Ortega", "123shop", "camilo_luz@gmail.com");
+insert into persona values ("00003","luisaMaria@hotmail.com", "Luisa Castro", "456shop","luisaMaria@hotmail.com");
+insert into persona values ("00004","administrador2@unishop.com", "Alvaro Arias", "123shop", "administrador2@unishop.com");
+insert into persona values ("00005","bdtabaresv@uqvirtual.edu.co", "Brahiam Tabares", "123shop", "bdtabaresv@uqvirtual.edu.co");
+insert into persona values ("00006","carito_quindio@gmail.com", "Carolina Jimenez", "123456","carito_quindio@gmail.com");
+insert into persona values ("1","admon@ishop.com", "root", "12345","admon@ishop.com");
+insert into persona values ("2","prueba@prueba.com", "prueba", "12345","prueba@prueba.com");
 
 -- administrador
 

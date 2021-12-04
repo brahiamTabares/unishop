@@ -26,7 +26,7 @@ public class Persona implements Serializable,EntidadGenerica<String> {
     private String codigo;
     @Column(nullable = false,length = 50)
     private String nombre;
-    @Column(nullable = false,unique = true,length = 120)
+    @Column(nullable = false,unique = true,length = 300)
     private String email;
     @Column(nullable = false, length = 200)
     private String password;
