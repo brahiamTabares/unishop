@@ -11,4 +11,8 @@ public interface ProductoServicio extends EntityServicio<Producto,String>{
     void removerFavorito(String codigoProducto, String codigoUsuario) throws Exception;
 
     void adicionarFavorito(String codigoProducto, String codigoUsuario) throws Exception;
+
+    void removerSubasta(String codigoProducto, String codigoUsuario) throws Exception;
+
+    void adicionarSubasta(String codigoProducto, String codigoUsuario) throws Exception;
 }

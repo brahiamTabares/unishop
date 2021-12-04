@@ -28,6 +28,12 @@ public class ProductoServicioImpl extends ServicioGenerico<Producto,String, Prod
         return repositorio.obtenerFavoritos(codigo);
     }
 
+/*    @Override
+    public List<Producto> obtenerSubastas(String codigo) {
+        return repositorio.obtenerSubastas(codigo);
+    }
+
+*/
     @Override
     public void adicionarFavorito(String codigoProducto, String codigoUsuario) throws Exception {
         Optional<Producto> producto = repositorio.findById(codigoProducto);
@@ -40,6 +46,16 @@ public class ProductoServicioImpl extends ServicioGenerico<Producto,String, Prod
         } else {
             throw new Exception("Error: Producto no encontrado");
         }
+    }
+
+    @Override
+    public void removerSubasta(String codigoProducto, String codigoUsuario) throws Exception {
+
+    }
+
+    @Override
+    public void adicionarSubasta(String codigoProducto, String codigoUsuario) throws Exception {
+
     }
 
     @Override

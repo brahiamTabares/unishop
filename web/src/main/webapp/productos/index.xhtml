@@ -80,6 +80,11 @@
                                  oncomplete="PF('deleteEntityDialog').show()">
                     <f:setPropertyActionListener value="#{entity}" target="#{productoBean.selectedEntity}"/>
                 </p:commandButton>
+                <p:commandButton icon="pi pi-briefcase" update=":form"
+                                 styleClass="edit-button rounded-button  #{ProductoBean.subastas.contains(entity) ? 'ui-button-warning':'ui-button-success' }"
+                                 process="@this" action="#{ProductoBean.actualizarFavoritos(entity)}">
+
+                </p:commandButton>
             </p:column>
 
         </p:dataTable>

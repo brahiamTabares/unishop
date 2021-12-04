@@ -54,6 +54,9 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
 
     @Query("select s from Subasta s join s.producto p join p.categorias c where c.codigo =:codigo and current_timestamp < s.fecha")
 
+   // @Query("select s from Subasta u join s.producto p where u.codigo = :codigo")
+   // List<Producto> obtenerSubastas(String codigo)
+
     List<Subasta> ListarSubastasPorCategoria(String codigo);
 
     // 6.	Una lista de los comentarios de un producto específico que aún no tienen respuesta.

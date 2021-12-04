@@ -92,4 +92,6 @@ public class NavegarProductosBean extends PrimeFacesCrudBean<Producto,String, Pr
         }
 
     }
+
+
 }

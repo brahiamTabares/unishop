@@ -13,13 +13,13 @@
     <h:form id="form">
         <p:growl id="messages" />
 
-        <p:dataTable id="dt-entities" widgetVar="dtEntities" var="entity" value="#{navegarProductosBean.favoritos}"
+        <p:dataTable id="dt-entities" widgetVar="dtEntities" var="entity" value="#{ProductoBean.favoritos}"
                      reflow="true" styleClass="entity-table"
-                     selection="#{navegarProductosBean.selectedEntities}" rowKey="#{entity.dny}" paginator="true"
+                     selection="#{ProductoBean.selectedEntities}" rowKey="#{entity.dny}" paginator="true"
                      rows="10" rowSelectMode="add" paginatorPosition="bottom">
             <f:facet name="header">
                 <div class="entity-table-header">
-                    <span style="font-weight: bold">PRODUCTOS</span>
+                    <span style="font-weight: bold">SUBASTAS</span>
                     <span class="filter-container ui-input-icon-left">
                         <i class="pi pi-search"></i>
                         <p:inputText id="globalFilter" onkeyup="PF('dtEntities').filter()" placeholder="Buscar"/>
@@ -56,16 +56,19 @@
                     </p:panelGrid>
                 </p:repeat>
             </p:column>
+            <p:column headerText="Ciudad" filterBy="#{entity.ciudad.nombre}" filterStyle="display: none" >
+                <h:outputText value="#{entity.ciudad.nombre}"/>
+            </p:column>
             <p:column exportable="false">
                 <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-star" process="@this"
                                  oncomplete="PF('deleteEntityDialog').show()">
-                    <f:setPropertyActionListener value="#{entity}" target="#{navegarProductosBean.selectedEntity}"/>
+                    <f:setPropertyActionListener value="#{entity}" target="#{ProductoBean.selectedEntity}"/>
                 </p:commandButton>
             </p:column>
 
         </p:dataTable>
         <p:confirmDialog widgetVar="deleteEntityDialog" showEffect="fade" width="300"
-                         message="Quitar de favoritos?" header="Confirmación" severity="warn">
+                         message="Quitar Subasta?" header="Confirmación" severity="warn">
             <p:commandButton value="Si" icon="pi pi-check" actionListener="#{navegarProductosBean.removerFavorito}"
                              process="@this" oncomplete="PF('deleteEntityDialog').hide()" update=":form" />
             <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
