@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class InicioBean implements Serializable {
-    private String mensaje = "LLegó la Navidad";
-
+    private String mensaje = "LLegó la Navidad \n" +"Esperan tu regalo";
 
 }
