@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class InicioBean implements Serializable {
-    private String mensaje = "Mi primera página en JSF";
+    private String mensaje = "LLegó la Navidad";
 
 
 }
