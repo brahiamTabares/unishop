@@ -20,7 +20,18 @@
                     <p:outputLabel for="nombre">Nombre</p:outputLabel>
                     <p:inputText id="nombre" value="#{administradorBean.selectedEntity.nombre}"/>
                 </div>
-
+                <div class="p-field">
+                <p:outputLabel for="email_login" value="Email:" />
+                <p:inputText id="email_login" value="#{administradorBean.selectedEntity.email}" required="true" />
+                </div>
+                <div class="p-field">
+                <p:outputLabel for="password_login" value="Password:" />
+                <p:inputText id="password_login" value="#{administradorBean.selectedEntity.password}"  required="true"/>
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="username" value="Username:" />
+                    <p:inputText id="username" value="#{administradorBean.selectedEntity.username}" required="true"/>
+                </div>
             </p:outputPanel>
         </p:outputPanel>
         <f:facet name="footer">

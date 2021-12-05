@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -26,7 +26,7 @@
                     </span>
                 </div>
             </f:facet>
-            <!-- COLUMNAS DE LOS ATRIBUTOS QUE DESEO MOSTRAR EN LA TABLA -->
+             COLUMNAS DE LOS ATRIBUTOS QUE DESEO MOSTRAR EN LA TABLA
             <p:column headerText="Código" filterBy="#{entity.codigo}" filterStyle="display: none" >
                 <h:outputText value="#{entity.codigo}"/>
             </p:column>
@@ -62,14 +62,14 @@
             <p:column exportable="false">
                 <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-star" process="@this"
                                  oncomplete="PF('deleteEntityDialog').show()">
-                    <f:setPropertyActionListener value="#{entity}" target="#{ProductoBean.selectedEntity}"/>
+                    <f:setPropertyActionListener value="#{entity}" target="#{subastaBean.selectedEntity}"/>
                 </p:commandButton>
             </p:column>
 
         </p:dataTable>
         <p:confirmDialog widgetVar="deleteEntityDialog" showEffect="fade" width="300"
                          message="Quitar Subasta?" header="Confirmación" severity="warn">
-            <p:commandButton value="Si" icon="pi pi-check" actionListener="#{navegarProductosBean.removerFavorito}"
+            <p:commandButton value="Si" icon="pi pi-check" actionListener="#{subastaBean.removerFavorito}"
                              process="@this" oncomplete="PF('deleteEntityDialog').hide()" update=":form" />
             <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
                              onclick="PF('deleteEntityDialog').hide()"/>
@@ -79,3 +79,4 @@
 </ui:define>
 </ui:composition>
 </html>
+-->
