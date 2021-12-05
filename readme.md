@@ -12,6 +12,11 @@ consiste en el desarrollo de la capa de persistencia, así mismo la creación de
 para verificar el correcto funcionamiento de la creación, eliminación, actualización y realización de consultas
 de los datos en la base de datos SQL.
 
+### Fase 2 
+
+Se realiza la segunda fase del proyecto de la asignatura de programacion avanzada la cual consisten en el desarrollo de 
+la parte de la capa de negocios  y la parte web  , implementada con JSF .
+
 
 Para compilar use 
 
