@@ -53,4 +53,14 @@ insert into producto values ("1238","Azul, para adulto", 5, "2021-10-12", "Raque
 insert into producto_categoria(codigo_categoria,codigo_producto) values ("100","1357");
 insert into producto_categoria(codigo_categoria,codigo_producto) values ("103","1236");
 insert into producto_categoria(codigo_categoria,codigo_producto) values ("102","2468");
+insert into producto_categoria(codigo_categoria,codigo_producto) values ("100","1237");
 insert into producto_categoria(codigo_categoria,codigo_producto) values ("101","1238");
+
+
+-- compra
+
+insert into compra values ("001","2020-06-03", "TARJETA_CREDITO","00002" );
+insert into compra values ("002","2020-07-13", "TARJETA_DEBITO","00002" );
+insert into compra values ("003","2020-12-09", "NEQUI","00003" );
+insert into compra values ("004","2021-02-07", "TARJETA_CREDITO","00002" );
+insert into compra values ("005","2021-04-03", "TARJETA_CREDITO","00006" );

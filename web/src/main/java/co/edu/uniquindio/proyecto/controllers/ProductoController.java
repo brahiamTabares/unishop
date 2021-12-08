@@ -24,6 +24,8 @@ public class ProductoController {
     private ComentarioServicio comentarioServicio;
 
 
+    private ComentarioServicio comentarioServicio;
+
     @Autowired
     public ProductoController(ProductoServicio productoServicio,ComentarioServicio comentarioServicio) {
         this.productoServicio = productoServicio;
@@ -82,6 +84,30 @@ public class ProductoController {
         }
     }
 
+
+    @PostMapping("/{codigo}/comentarios")
+    public ResponseEntity<?> adicionarComentario(@PathVariable String codigo,@RequestBody Comentario comentario)  {
+        try{
+            Producto producto = productoServicio.obtener(codigo);
+            comentario.setProducto(producto);
+            comentario.setFechaComentario( LocalDateTime.now() );
+            return ResponseEntity.status(HttpStatus.CREATED).body( ComentarioDTO.of(comentarioServicio.registrar(comentario)) );
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new Mensaje(e.getMessage()));
+        }
+    }
+
+    @PatchMapping("/{codigo}/descuentos")
+    public ResponseEntity<?> adicionarDescuento(@PathVariable String codigo,@RequestBody DescuentoDTO descuento)  {
+        try{
+            Producto producto = productoServicio.obtener(codigo);
+            float nuevoDescuento = producto.getDescuento() + descuento.getValue();
+            producto.setDescuento(nuevoDescuento);
+            return ResponseEntity.ok( ProductoDTO.of(productoServicio.actualizar(producto)) );
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Mensaje(e.getMessage()));
+        }
+    }
     // Single item
 
     @GetMapping("/{codigo}")
@@ -89,7 +115,6 @@ public class ProductoController {
         try{
             return ResponseEntity.ok( ProductoDTO.of(productoServicio.obtener(codigo)) );
         }catch (Exception e){
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Mensaje(e.getMessage()));
         }
     }

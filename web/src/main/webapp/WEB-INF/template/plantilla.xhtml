@@ -55,6 +55,13 @@
                     <p:menuitem value="Categorias" icon="pi pi-fw pi-calendar" action="/categorias/index.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
                     <p:menuitem value="Ciudades" icon="pi pi-fw pi-calendar" action="/ciudades/index.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
                     <p:menuitem value="Usuarios" icon="pi pi-fw pi-calendar" action="/administradores/index.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                    <p:submenu label="Reportes" rendered="#{seguridadBean.administrador}" >
+                        <p:menuitem value="compras x Medio pago" icon="pi pi-fw pi-calendar" action="/reportes/comprasByMedioPago.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                        <p:menuitem value="productos x Categoria" icon="pi pi-fw pi-calendar" action="/reportes/productosByCategoria.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                        <p:menuitem value="productos x Ciudad" icon="pi pi-fw pi-calendar" action="/reportes/productosByCiudad.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                        <p:menuitem value="productos x Vendedor" icon="pi pi-fw pi-calendar" action="/reportes/productosByVendedor.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                        <p:menuitem value="usuarios x Ciudad" icon="pi pi-fw pi-calendar" action="/reportes/usuariosByCiudad.xhtml?faces-redirect=true" rendered="#{seguridadBean.administrador}" />
+                    </p:submenu>
                     <p:menuitem value="Salir" icon="pi pi-fw pi-sign-out" action="#{seguridadBean.cerrarSesion}" ajax="false" />
                 </p:menubar>
             </h:form>

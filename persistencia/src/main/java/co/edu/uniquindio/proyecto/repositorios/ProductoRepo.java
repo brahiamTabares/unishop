@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
+import co.edu.uniquindio.proyecto.dto.DatoDTO;
 import co.edu.uniquindio.proyecto.entidades.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,7 +26,17 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
     @Query("select c.nombre, count (p) from Categoria c join c.productos p join p.subastas s group by c")
     List<Object[]> indicarProductosEnSubastaPorCategoria();
 
-    // 2.	Una lista con las categorías y su calificación promedio.
+
+  @Query("select new co.edu.uniquindio.proyecto.dto.DatoDTO(p.vendedor.nombre,COUNT(1) ) from Producto p group by p.vendedor")
+  List<DatoDTO> numeroProductosByVendedor();
+
+  @Query("select new co.edu.uniquindio.proyecto.dto.DatoDTO(c.nombre,c.productos.size ) from Categoria c ")
+  List<DatoDTO> numeroProductosByCategoria();
+
+  @Query("select new co.edu.uniquindio.proyecto.dto.DatoDTO(c.nombre,c.productos.size ) from Ciudad c ")
+  List<DatoDTO> numeroProductosByCiudad();
+
+  // 2.	Una lista con las categorías y su calificación promedio.
     // Ordene la lista de mayor a menor de acuerdo a la calificación promedio.
     // (incluya todos las categorías así no tenga productos con calificaciones)
     @Query("select c.nombre, AVG(cm.calificacion) from Categoria c join c.productos p join p.comentarios cm group by c.nombre order by cm.calificacion desc")
@@ -54,9 +65,6 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
 
     @Query("select s from Subasta s join s.producto p join p.categorias c where c.codigo =:codigo and current_timestamp < s.fecha")
 
-   // @Query("select s from Subasta u join s.producto p where u.codigo = :codigo")
-   // List<Producto> obtenerSubastas(String codigo)
-
     List<Subasta> ListarSubastasPorCategoria(String codigo);
 
     // 6.	Una lista de los comentarios de un producto específico que aún no tienen respuesta.
@@ -75,7 +83,10 @@ public interface ProductoRepo extends JpaRepository<Producto,String> {
     @Query("select s from Subasta s join s.subastaUsuarios su where su.codigo= :codigo")
     List<Usuario> mostrarUsuarioGanador(String codigo);
 
-    // 9.	El valor total de cada una de las compras que ha hecho un usuario específico.
+
+
+
+  // 9.	El valor total de cada una de las compras que ha hecho un usuario específico.
 
 
 
