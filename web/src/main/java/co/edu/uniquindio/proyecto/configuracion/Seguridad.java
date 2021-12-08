@@ -18,6 +18,7 @@ public class Seguridad {
         p.add("/administradores/.*");
         p.add("/ciudades/.*");
         p.add("/categorias/.*");
+        p.add("/reportes/.*");
         return p;
     }
 
