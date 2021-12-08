@@ -1,14 +1,19 @@
 package co.edu.uniquindio.proyecto.controllers;
 
 import co.edu.uniquindio.proyecto.controllers.util.Mensaje;
+import co.edu.uniquindio.proyecto.dto.ComentarioDTO;
+import co.edu.uniquindio.proyecto.dto.DescuentoDTO;
 import co.edu.uniquindio.proyecto.dto.ProductoDTO;
+import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.servicios.ComentarioServicio;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,11 +21,13 @@ import java.util.stream.Collectors;
 @RequestMapping("api/productos")
 public class ProductoController {
     private ProductoServicio productoServicio;
+    private ComentarioServicio comentarioServicio;
 
 
     @Autowired
-    public ProductoController(ProductoServicio productoServicio) {
+    public ProductoController(ProductoServicio productoServicio,ComentarioServicio comentarioServicio) {
         this.productoServicio = productoServicio;
+        this.comentarioServicio = comentarioServicio;
     }
 
     @GetMapping
@@ -63,6 +70,17 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new Mensaje(e.getMessage()));
         }
     }
+    @PostMapping("/{codigo}/comentarios")
+    public ResponseEntity<?> adicionarComentario(@PathVariable String codigo,@RequestBody Comentario comentario)  {
+        try{
+            Producto producto = productoServicio.obtener(codigo);
+            comentario.setProducto(producto);
+            comentario.setFechaComentario( LocalDateTime.now() );
+            return ResponseEntity.status(HttpStatus.CREATED).body( ComentarioDTO.of(comentarioServicio.registrar(comentario)) );
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new Mensaje(e.getMessage()));
+        }
+    }
 
     // Single item
 
@@ -91,6 +109,17 @@ public class ProductoController {
         try{
             productoServicio.eliminar(codigo);
             return ResponseEntity.noContent().build();
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Mensaje(e.getMessage()));
+        }
+    }
+    @PatchMapping("/{codigo}/descuentos")
+    public ResponseEntity<?> adicionarDescuento(@PathVariable String codigo,@RequestBody DescuentoDTO descuento)  {
+        try{
+            Producto producto = productoServicio.obtener(codigo);
+            float nuevoDescuento = producto.getDescuento() + descuento.getValue();
+            producto.setDescuento(nuevoDescuento);
+            return ResponseEntity.ok( ProductoDTO.of(productoServicio.actualizar(producto)) );
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Mensaje(e.getMessage()));
         }

@@ -53,5 +53,4 @@ insert into producto values ("1238","Azul, para adulto", 5, "2021-10-12", "Raque
 insert into producto_categoria(codigo_categoria,codigo_producto) values ("100","1357");
 insert into producto_categoria(codigo_categoria,codigo_producto) values ("103","1236");
 insert into producto_categoria(codigo_categoria,codigo_producto) values ("102","2468");
-insert into producto_categoria(codigo_categoria,codigo_producto) values ("100","1237");
 insert into producto_categoria(codigo_categoria,codigo_producto) values ("101","1238");
