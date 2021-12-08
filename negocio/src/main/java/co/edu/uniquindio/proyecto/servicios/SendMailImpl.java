@@ -12,7 +12,7 @@ public class SendMailImpl implements SendMail {
     private JavaMailSender sender;
 
     @Autowired
-    public SendMailImpl(JavaMailSender sender) {
+    public SendMailImpl() {
         this.sender = sender;
     }
 

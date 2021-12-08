@@ -8,6 +8,7 @@ import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.servicios.ComentarioServicio;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
+import co.edu.uniquindio.proyecto.servicios.ReporteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +23,15 @@ import java.util.stream.Collectors;
 public class ProductoController {
     private ProductoServicio productoServicio;
     private ComentarioServicio comentarioServicio;
+    private ReporteServicio reporteServicio;
 
 
-    private ComentarioServicio comentarioServicio;
 
     @Autowired
-    public ProductoController(ProductoServicio productoServicio,ComentarioServicio comentarioServicio) {
+    public ProductoController(ProductoServicio productoServicio,ComentarioServicio comentarioServicio,ReporteServicio reporteServicio) {
         this.productoServicio = productoServicio;
         this.comentarioServicio = comentarioServicio;
+        this.reporteServicio=reporteServicio;
     }
 
     @GetMapping
@@ -84,30 +86,6 @@ public class ProductoController {
         }
     }
 
-
-    @PostMapping("/{codigo}/comentarios")
-    public ResponseEntity<?> adicionarComentario(@PathVariable String codigo,@RequestBody Comentario comentario)  {
-        try{
-            Producto producto = productoServicio.obtener(codigo);
-            comentario.setProducto(producto);
-            comentario.setFechaComentario( LocalDateTime.now() );
-            return ResponseEntity.status(HttpStatus.CREATED).body( ComentarioDTO.of(comentarioServicio.registrar(comentario)) );
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new Mensaje(e.getMessage()));
-        }
-    }
-
-    @PatchMapping("/{codigo}/descuentos")
-    public ResponseEntity<?> adicionarDescuento(@PathVariable String codigo,@RequestBody DescuentoDTO descuento)  {
-        try{
-            Producto producto = productoServicio.obtener(codigo);
-            float nuevoDescuento = producto.getDescuento() + descuento.getValue();
-            producto.setDescuento(nuevoDescuento);
-            return ResponseEntity.ok( ProductoDTO.of(productoServicio.actualizar(producto)) );
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Mensaje(e.getMessage()));
-        }
-    }
     // Single item
 
     @GetMapping("/{codigo}")
@@ -150,4 +128,24 @@ public class ProductoController {
         }
     }
 
+    @GetMapping("/{codigo}")
+    public List<ProductoDTO> listarProductosVendedor(
+            @RequestParam(required = false) String codigoVendedor){
+
+        return productoServicio.listar()
+      .stream()
+                .filter(p->filtrarProductoVendedor(p,codigoVendedor))
+                .map(ProductoDTO::of)
+                .collect(Collectors.toList());
+
+    }
+
+
+    private boolean filtrarProductoVendedor( Producto producto,String codigoVendedor) {
+        if (codigoVendedor != null && !producto.getVendedor().getCodigo().equals(codigoVendedor)) {
+            return false;
+
+        }
+        return true;
+    }
 }
