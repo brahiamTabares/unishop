@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.controllers;
 
 import co.edu.uniquindio.proyecto.controllers.util.Mensaje;
 import co.edu.uniquindio.proyecto.dto.ComentarioDTO;
+import co.edu.uniquindio.proyecto.dto.DatoDTO;
 import co.edu.uniquindio.proyecto.dto.DescuentoDTO;
 import co.edu.uniquindio.proyecto.dto.ProductoDTO;
 import co.edu.uniquindio.proyecto.entidades.Comentario;
@@ -38,17 +39,29 @@ public class ProductoController {
     public List<ProductoDTO> listarProductos(@RequestParam(required = false) String codigoCategoria,
                                              @RequestParam(required = false) Float precioMinimo,
                                              @RequestParam(required = false) Float precioMaximo,
-                                             @RequestParam(required = false) String codigoCiudad) {
+                                             @RequestParam(required = false) String codigoCiudad,
+                                             @RequestParam(required = false) String codigoVendedor) {
         return productoServicio.listar()
                 .stream()
-                .filter(p->filtrarProducto(p,codigoCategoria,precioMinimo,precioMaximo,codigoCiudad))
+                .filter(p->filtrarProducto(p,codigoCategoria,precioMinimo,precioMaximo,codigoCiudad,codigoVendedor))
                 .map(ProductoDTO::of)
                 .collect(Collectors.toList());
     }
 
 
+    @GetMapping("/reportes/byCiudad")
+    public List<DatoDTO> generarReporteProductosByCiudad() {
+        return reporteServicio.generarReporteProductosPorCiudad();
+    }
 
-    private boolean filtrarProducto(Producto producto, String codigoCategoria, Float precioMinimo, Float precioMaximo, String codigoCiudad){
+    @GetMapping("/reportes/byCategoria")
+    public List<DatoDTO> generarReporteProductosByCategoria() {
+        return reporteServicio.generarReporteProductosPorCategoria();
+    }
+
+    private boolean filtrarProducto(Producto producto, String codigoCategoria,
+                                    Float precioMinimo, Float precioMaximo,
+                                    String codigoCiudad, String codigoVendedor){
         if( precioMaximo != null && producto.getPrecio() > precioMaximo ){
             return false;
         }
@@ -59,6 +72,9 @@ public class ProductoController {
             return false;
         }
         if( codigoCiudad != null && !producto.getCiudad().getCodigo().equals(codigoCiudad) ){
+            return false;
+        }
+        if( codigoVendedor != null && !producto.getVendedor().getCodigo().equals(codigoVendedor) ){
             return false;
         }
         return true;
@@ -128,24 +144,4 @@ public class ProductoController {
         }
     }
 
-    @GetMapping("/{codigo}")
-    public List<ProductoDTO> listarProductosVendedor(
-            @RequestParam(required = false) String codigoVendedor){
-
-        return productoServicio.listar()
-      .stream()
-                .filter(p->filtrarProductoVendedor(p,codigoVendedor))
-                .map(ProductoDTO::of)
-                .collect(Collectors.toList());
-
-    }
-
-
-    private boolean filtrarProductoVendedor( Producto producto,String codigoVendedor) {
-        if (codigoVendedor != null && !producto.getVendedor().getCodigo().equals(codigoVendedor)) {
-            return false;
-
-        }
-        return true;
-    }
 }
